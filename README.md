@@ -17,9 +17,9 @@
 
 ## ✨ 特性
 
-  <table width="100%">
+  <table width="100%" style="width: 100%; table-layout: fixed;">
     <tr>
-    <td width="33%" align="center">
+    <td width="33%" align="center" style="width: 33.33%;">
       <h3>🎨 现代化设计</h3>
       <p align="left">
         ✓ 简洁美观的界面<br>
@@ -27,7 +27,7 @@
         ✓ 支持深色/浅色模式切换
       </p>
     </td>
-    <td width="33%" align="center">
+    <td width="33%" align="center" style="width: 33.33%;">
       <h3>⚡ 性能优异</h3>
       <p align="left">
         ✓ 基于 Hugo 静态生成，速度极快<br>
@@ -35,7 +35,7 @@
         ✓ 资源压缩优化
       </p>
       </td>
-    <td width="33%" align="center">
+    <td width="33%" align="center" style="width: 33.33%;">
       <h3>📦 易于管理</h3>
       <p align="left">
         ✓ YAML 配置，简单直观<br>
@@ -148,11 +148,11 @@ hugo --minify
 
 ## 🌐 部署方式
 
-<table width="100%">
+<table width="100%" style="width: 100%; table-layout: fixed;">
   <tr>
-    <th>平台</th>
-    <th>适用场景</th>
-    <th>特点</th>
+    <th style="width: 25%;">平台</th>
+    <th style="width: 25%;">适用场景</th>
+    <th style="width: 50%;">特点</th>
   </tr>
   <tr>
     <td><b>☁️ Cloudflare Pages</b></td>
