@@ -28,25 +28,6 @@
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ $alertify.RelPermalink }}" type="text/css" media="all" />
 
-    <!-- 百度统计 -->
-    {{ with .Site.Params.seo.baiduhmid }}
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script")
-            hm.src = "https://hm.baidu.com/hm.js?{{ $.Site.Params.seo.baiduhmid }}"
-            var s = document.getElementsByTagName("script")[0]
-            s.parentNode.insertBefore(hm, s)
-        })()
-    </script>
-    {{ end }}
-    <!-- end 百度统计 -->
-
-    <!-- 51.LA 网站统计 -->
-    {{ with .Site.Params.seo.tj51laid }}
-    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-    <script>LA.init({id:"{{ $.Site.Params.seo.tj51laid }}",ck:"{{ $.Site.Params.seo.tj51lack }}",autoTrack:true})</script>
-    {{ end }} 
-    <!-- end 51.LA 网站统计 -->
+    <!-- 统计代码已移除，可在此添加自己的统计代码 -->
 
 </head>

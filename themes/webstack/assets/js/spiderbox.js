@@ -15,7 +15,7 @@ const string = function () {
     */
 };
 console.log(makeMulti(string), "color: #0084ff");
-console.log("\n %c © WuKongSec %c wukongsec.com %c © BOB'S BLOG %c itbob.cn %c © SpiderBox %c spiderbox.cn \n", "color: #ffffff; background: #f1404b; padding:5px 0;", "background: #fadfa3; padding:5px 0;", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;", "color: #ffffff; background: #0084ff; padding:5px 0;", "background: #fadfa3; padding:5px 0;");
+console.log("\n %c 驼铃电商工具箱 %c dy.202802.xyz \n", "color: #ffffff; background: #0084ff; padding:5px 0;", "background: #fadfa3; padding:5px 0;");
 
 /* 弹窗一：say hello baby */
 // $(document).ready(function () {
@@ -365,25 +365,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 });
 
-/* 新弹窗：say hello baby */
+/* 欢迎弹窗 */
 window.addEventListener('DOMContentLoaded', (event) => {
-    // 检查本地存储中的标志位对应的时间，如果时间在15天内，则不弹窗
-    let lastPopupTime = localStorage.getItem("_SPIDERBOX_SHOW_START_POPUP_");
+    // 检查本地存储中的标志位对应的时间
+    let lastPopupTime = localStorage.getItem("_TUOLING_SHOW_START_POPUP_");
     lastPopupTime = new Date(lastPopupTime).getTime();
     const currentTime = new Date().getTime();
     const timeDifferenceInDays = Math.floor((currentTime - lastPopupTime) / (1000 * 60 * 60 * 24));
     if (!lastPopupTime || timeDifferenceInDays >= 30) {  // 30 天内不再弹窗
         alertify.confirm(
-            "欢迎访问虫盒",
-            "1️⃣ 站长公众号：<a href='https://static.wukongsec.com/public/images/info/spider_skill_green.png' target='_blank'>虫技</a>丨<a href='https://www.itbob.cn/about/' target='_blank'>关于站长</a>丨<a href='https://spiderapi.cn/pages/changelog' target='_blank'>更新日志</a>丨<a href='https://bbs.wukongsec.com/' target='_blank'>在线反馈/交流/联系</a><br><br>" +
-            "2️⃣ 尊重原创，遵守开源协议，一直被模仿，从未被超越，恶意抄袭<a href='https://mp.weixin.qq.com/s/7vFpmhvU8-DCONlvlklMTQ' target='_blank'>案例一</a>、<a href='https://mp.weixin.qq.com/s/3s36tg_mI-Dg4pddoi-eEA' target='_blank'>案例二</a><br><br>" +
-            "3️⃣ 添加站长微信: <a href='https://static.wukongsec.com/public/images/info/wechat.jpg' target='_blank'>IT-BOB</a>，加入微信交流群，行业大佬云集，机器人实时推送全网优质文章",
+            "欢迎访问驼铃电商工具箱",
+            "📌 本站收集整理电商运营相关工具资源，助力商家更好地运营管理店铺！<br><br>" +
+            "📧 如有问题或建议，欢迎联系：<a href='mailto:admin@itbob.cn'>admin@itbob.cn</a>",
             function () {},
             function () {
-                localStorage.setItem("_SPIDERBOX_SHOW_START_POPUP_", new Date().toISOString());
+                localStorage.setItem("_TUOLING_SHOW_START_POPUP_", new Date().toISOString());
                 alertify.success('30 天内不再弹出');
             }).set({
-            labels: {ok: '俺知道了', cancel: '烦死了，近期不再弹出!'},
+            labels: {ok: '知道了', cancel: '近期不再弹出'},
             'movable': false,
             'reverseButtons': true,
             'closable': false

@@ -1,21 +1,4 @@
-@font-face {
-    font-family: "OxaniumRegular";
-    src: url("https://static.wukongsec.com/public/fonts/OxaniumRegular-Lite-222.woff2");
-}
-
-@font-face {
-    font-family: "DingTalk-JinBuTi";
-    src: url("https://static.wukongsec.com/public/fonts/DingTalk-JinBuTi-Lite-3000.woff2");
-}
-
-/* 自定义鼠标指针样式 */
-* {
-    cursor: url("https://static.wukongsec.com/spiderbox/images/mouse/pointer.cur"), auto;
-}
-
-div {
-    cursor: url("https://static.wukongsec.com/spiderbox/images/mouse/default.cur"), auto;
-}
+/* 自定义样式 */
 
 input {
     cursor: text;
