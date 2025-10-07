@@ -57,16 +57,16 @@
 
                             {{ range .Site.Data.webstack }}
                             {{ if .list }}
+                            {{ $taxonomy := .taxonomy }} <!-- 避免同名二级导航定位不正确的问题 -->
                             <li class="sidebar-item">
                                 <!-- 原来是跳转到第一个子目录位置 -->
                                 <!-- <a href="#{{ range first 1 .tabs }}{{ md5 .name }}{{ end }}" -->
                                 <a href="javascript:void(0)" class="smooth change-href"
-                                   data-change="#{{ range first 1 .tabs }}{{ md5 (printf "%s-%s" $.taxonomy .name) }}{{ end }}">
+                                   data-change="#{{ range first 1 .tabs }}{{ md5 (printf "%s-%s" $taxonomy .name) }}{{ end }}">
                                     <i class="{{ .icon }} icon-fw icon-lg mr-2"></i>
                                     <span>{{ .taxonomy }}</span>
                                     <i class="fas fa-chevron-right sidebar-more text-sm"></i>
                                 </a>
-                                {{ $taxonomy := .taxonomy }} <!-- 避免同名二级导航定位不正确的问题 -->
                                 <ul>
                                     {{ range .tabs }}
                                     <li><a href="#{{ md5 (printf "%s-%s" $taxonomy .name) }}" class="smooth"><span>{{ .name }}</span></a></li>
