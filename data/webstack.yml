@@ -2,7 +2,7 @@
   icon: fa-star
   links:
   - title: 电商黑科技文档
-    icon: images/驼铃标志1.png
+    logo: images/驼铃标志1.png
     url: https://fbjvryq00y.feishu.cn/wiki/BnvGwxuCgizPOfkxRZlcwDInnyg
     description: 品退、差评方法等。
   - title: 电商运营辅助软件
@@ -10,7 +10,7 @@
     url: https://fbjvryq00y.feishu.cn/wiki/KnpjwnxZaijQ8SkjRtScJUkenl7
     description: 辅助软件，提升效率。
   - title: 电商运营辅助文档
-    icon: images/驼铃标志1.png
+    logo: images/驼铃标志1.png
     url: https://fbjvryq00y.feishu.cn/wiki/XRnJwu9BDi3Uqxkj8PxcHSBEnQc
     description: 辅助文档，提升效率。
   - title: 驼铃电商礼品网
