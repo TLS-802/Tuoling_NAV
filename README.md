@@ -10,7 +10,6 @@
   [![GitHub Stars](https://img.shields.io/github/stars/yourusername/yourrepo?style=flat-square&logo=github)](https://github.com/yourusername/yourrepo)
   
   [在线演示](https://spiderbox.cn/) · [快速开始](#-快速开始) · [部署指南](#-部署方式)
-  
 </div>
 
 ---
@@ -19,34 +18,13 @@
 
 <div style="width: 100%; overflow-x: auto;">
 
-<table style="width: 100%; border-collapse: collapse; margin: 0; padding: 0;">
-  <tr>
-    <td style="width: 33.33%; padding: 20px; vertical-align: top; border: none;">
-      <h3>🎨 现代化设计</h3>
-      <p>
-        ✓ 简洁美观的界面<br>
-        ✓ 响应式布局，完美适配各种设备<br>
-        ✓ 支持深色/浅色模式切换
-      </p>
-    </td>
-    <td style="width: 33.33%; padding: 20px; vertical-align: top; border: none;">
-      <h3>⚡ 性能优异</h3>
-      <p>
-        ✓ 基于 Hugo 静态生成，速度极快<br>
-        ✓ 全球 CDN 加速，访问流畅<br>
-        ✓ 资源压缩优化
-      </p>
-    </td>
-    <td style="width: 33.33%; padding: 20px; vertical-align: top; border: none;">
-      <h3>📦 易于管理</h3>
-      <p>
-        ✓ YAML 配置，简单直观<br>
-        ✓ 分类清晰，便于维护<br>
-        ✓ 支持图标、二维码展示
-      </p>
-    </td>
-  </tr>
-</table>
+| 特性 | 描述 |
+|------|------|
+| 🎨 **现代化设计** | 简洁美观的界面，响应式布局，支持深色/浅色模式切换 |
+| ⚡ **性能优异** | 基于 Hugo 静态生成，全球 CDN 加速，资源压缩优化 |
+| 📦 **易于管理** | YAML 配置简单直观，分类清晰，支持图标、二维码展示 |
+| 🔍 **全站搜索** | 实时搜索所有导航链接，快速定位所需资源 |
+| 📱 **响应式适配** | 完美适配手机、平板、电脑等各种设备 |
 
 </div>
 
@@ -59,60 +37,38 @@
 
 ```
 Tuoling_NAV/
-├── .github/
-│   ├── FUNDING.yml
+├── .github/                           # GitHub 配置
+│   ├── FUNDING.yml                    # 赞助配置
 │   └── workflows/
-│       └── spiderbox-deploy.yml        # GitHub Actions 自动部署
-├── data/                               # 数据文件目录
-│   ├── headers.yml                     # 头部配置
-│   ├── recommend.yml                   # 推荐资源
-│   └── webstack.yml                    # 主要导航数据（核心）
-├── static/                             # 静态资源目录
-│   ├── CNAME                           # 自定义域名配置
-│   ├── robots.txt                      # 搜索引擎爬虫规则
-│   ├── edgeone.json                    # EdgeOne CDN 配置
-│   └── baidu_verify_*.html             # 百度站点验证文件
-├── themes/                             # 主题目录
-│   └── webstack/                       # WebStack 主题
-│       ├── assets/                     # 前端资源
-│       │   ├── css/
-│       │   │   ├── alertify.css        # 弹窗样式
-│       │   │   ├── custom-style.css    # 自定义样式
-│       │   │   └── style.css           # 主样式文件
-│       │   └── js/
-│       │       ├── alertify.min.js     # 弹窗插件
-│       │       ├── app.js              # 主要交互逻辑
-│       │       ├── canvas-nest.umd@2.0.4.js  # 背景动效
-│       │       ├── content-search.js   # 搜索功能
-│       │       ├── snowfall.min.js     # 下雪特效
-│       │       └── spiderbox.js        # 自定义脚本
-│       ├── layouts/                    # 模板文件
-│       │   ├── _default/
-│       │   │   ├── single.html         # 单页模板
-│       │   │   └── taxonomy.html       # 分类模板
-│       │   ├── partials/               # 组件模板
-│       │   │   ├── content_footer.html # 底部
-│       │   │   ├── content_header.html # 头部
-│       │   │   ├── content_main.html   # 主内容
-│       │   │   ├── content_search.html # 搜索框
-│       │   │   ├── footer.html         # 页脚
-│       │   │   ├── header.html         # 页头
-│       │   │   ├── modal_search.html   # 搜索弹窗
-│       │   │   └── sidebar.html        # 侧边栏
-│       │   ├── 404.html                # 404 页面
-│       │   └── index.html              # 首页模板
-│       ├── static/                     # 主题静态资源
-│       │   ├── favicon.ico
-│       │   ├── favicon.png
-│       │   └── logo.png
-│       ├── LICENSE
-│       └── README.md
-├── hugo.toml                           # Hugo 配置文件（核心配置）
-├── .gitignore                          # Git 忽略规则
-├── .hugo_build.lock                    # Hugo 构建锁文件
-├── LICENSE-AGPL                        # AGPL-3.0 许可证
-├── LICENSE-APACHE                      # Apache-2.0 许可证
-└── README.md                           # 项目说明文档
+│       └── spiderbox-deploy.yml       # GitHub Actions 自动部署
+├── data/                              # 数据文件目录
+│   ├── headers.yml                    # 头部配置
+│   ├── recommend.yml                  # 推荐资源
+│   └── webstack.yml                   # 主要导航数据（核心）
+├── static/                            # 静态资源目录
+│   ├── CNAME                          # 自定义域名配置
+│   ├── robots.txt                     # 搜索引擎爬虫规则
+│   ├── edgeone.json                   # EdgeOne CDN 配置
+│   └── baidu_verify_*.html            # 百度站点验证文件
+├── themes/                            # 主题目录
+│   └── webstack/                      # WebStack 主题
+│       ├── assets/                    # 前端资源
+│       │   ├── css/                   # 样式文件
+│       │   └── js/                    # JavaScript 文件
+│       ├── layouts/                   # 模板文件
+│       │   ├── _default/              # 默认模板
+│       │   ├── partials/              # 组件模板
+│       │   ├── 404.html               # 404 页面
+│       │   └── index.html             # 首页模板
+│       ├── static/                    # 主题静态资源
+│       ├── LICENSE                    # 许可证
+│       └── README.md                  # 主题说明
+├── hugo.toml                         # Hugo 配置文件（核心配置）
+├── .gitignore                         # Git 忽略规则
+├── .hugo_build.lock                   # Hugo 构建锁文件
+├── LICENSE-AGPL                       # AGPL-3.0 许可证
+├── LICENSE-APACHE                     # Apache-2.0 许可证
+└── README.md                          # 项目说明文档
 ```
 
 </details>
@@ -126,20 +82,20 @@ Tuoling_NAV/
 - [Hugo](https://gohugo.io/) >= 0.139.4
 - [Git](https://git-scm.com/)
 
-### 📥 安装
+### 📥 安装与运行
 
 ```bash
 # 克隆项目
 git clone https://github.com/yourusername/yourrepo.git
 cd yourrepo
 
-# 本地预览
+# 本地预览（开发模式）
 hugo server -D
 
-# 访问 http://localhost:1313
+# 访问 http://localhost:1313 查看效果
 ```
 
-### 🔨 构建
+### 🔨 构建生产版本
 
 ```bash
 # 构建生产版本
@@ -152,37 +108,12 @@ hugo --minify
 
 ## 🌐 部署方式
 
-<div style="width: 100%; overflow-x: auto;">
-
-<table style="width: 100%; border-collapse: collapse; margin: 0; padding: 0;">
-  <tr>
-    <th style="width: 25%; padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">平台</th>
-    <th style="width: 25%; padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">适用场景</th>
-    <th style="width: 50%; padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">特点</th>
-  </tr>
-  <tr>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;"><b>☁️ Cloudflare Pages</b></td>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;">国际用户</td>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;">免费 • 快速 • 零配置</td>
-  </tr>
-  <tr>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;"><b>📄 GitHub Pages</b></td>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;">个人项目</td>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;">完全免费 • 自动部署</td>
-  </tr>
-  <tr>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;"><b>▲ Vercel</b></td>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;">快速部署</td>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;">一键部署 • 自动优化</td>
-  </tr>
-  <tr>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;"><b>🇨🇳 Tencent EdgeOne</b></td>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;">国内用户</td>
-    <td style="padding: 12px; border-bottom: 1px solid #eee;">备案域名 • 国内加速</td>
-  </tr>
-</table>
-
-</div>
+| 平台 | 适用场景 | 特点 |
+|------|----------|------|
+| ☁️ **Cloudflare Pages** | 国际用户 | 免费 • 快速 • 零配置 |
+| 📄 **GitHub Pages** | 个人项目 | 完全免费 • 自动部署 |
+| ▲ **Vercel** | 快速部署 | 一键部署 • 自动优化 |
+| 🇨🇳 **Tencent EdgeOne** | 国内用户 | 备案域名 • 国内加速 |
 
 ### ☁️ Cloudflare Pages（推荐）
 
@@ -217,7 +148,7 @@ git push origin main
 
 ---
 
-## ⚙️ 配置
+## ⚙️ 配置指南
 
 ### 基础配置
 
@@ -250,20 +181,7 @@ title = "你的网站名称"
 
 ### 自定义样式
 
-修改 `themes/webstack/assets/css/custom-style.css` 添加你的自定义样式。
-
----
-
-## 🎨 核心功能
-
-| 功能 | 说明 |
-|------|------|
-| 🔍 **全站搜索** | 实时搜索所有导航链接 |
-| 🌙 **深色模式** | 支持浅色/深色主题切换 |
-| 📱 **响应式** | 完美适配手机、平板、电脑 |
-| 🎯 **分类管理** | 多级分类，清晰有序 |
-| ⚡ **快速加载** | CDN 加速，秒开网页 |
-| 🔒 **安全可靠** | HTTPS + 安全头部配置 |
+修改 `themes/webstack/assets/css/custom-style.css` 添加自定义样式。
 
 ---
 
@@ -271,21 +189,23 @@ title = "你的网站名称"
 
 所有内容通过 YAML 文件管理，位于 `data/` 目录：
 
-- **webstack.yml** - 主要导航数据（必需）
-- **recommend.yml** - 推荐资源
-- **headers.yml** - 顶部配置
+| 文件 | 用途 |
+|------|------|
+| **webstack.yml** | 主要导航数据（必需） |
+| **recommend.yml** | 推荐资源管理 |
+| **headers.yml** | 顶部配置信息 |
 
 ---
 
-## 🤝 贡献
+## 🤝 贡献指南
 
 欢迎提交 Issue 和 Pull Request！
 
-1. Fork 本项目
-2. 创建特性分支 (`git checkout -b feature/amazing-feature`)
-3. 提交更改 (`git commit -m 'Add amazing feature'`)
-4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 提交 Pull Request
+1. **Fork** 本项目
+2. 创建特性分支：`git checkout -b feature/amazing-feature`
+3. 提交更改：`git commit -m 'Add amazing feature'`
+4. 推送到分支：`git push origin feature/amazing-feature`
+5. 提交 **Pull Request**
 
 ---
 
