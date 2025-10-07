@@ -17,34 +17,34 @@
 
 ## ✨ 特性
 
-<table>
-  <tr>
-    <td width="50%">
+  <table>
+    <tr>
+    <td width="33%" align="center">
       <h3>🎨 现代化设计</h3>
-      <ul>
-        <li>简洁美观的界面</li>
-        <li>响应式布局，完美适配各种设备</li>
-        <li>支持深色/浅色模式切换</li>
-      </ul>
+      <p align="left">
+        ✓ 简洁美观的界面<br>
+        ✓ 响应式布局，完美适配各种设备<br>
+        ✓ 支持深色/浅色模式切换
+      </p>
     </td>
-    <td width="50%">
+    <td width="33%" align="center">
       <h3>⚡ 性能优异</h3>
-      <ul>
-        <li>基于 Hugo 静态生成，速度极快</li>
-        <li>CDN 加速，全球访问流畅</li>
-        <li>资源压缩优化</li>
-      </ul>
-    </td>
-    <td width="50%">
+      <p align="left">
+        ✓ 基于 Hugo 静态生成，速度极快<br>
+        ✓ 全球 CDN 加速，访问流畅<br>
+        ✓ 资源压缩优化
+      </p>
+      </td>
+    <td width="33%" align="center">
       <h3>📦 易于管理</h3>
-      <ul>
-        <li>YAML 配置，简单直观</li>
-        <li>分类清晰，便于维护</li>
-        <li>支持图标、二维码、广告位</li>
-      </ul>
-    </td>
-  </tr>
-</table>
+      <p align="left">
+        ✓ YAML 配置，简单直观<br>
+        ✓ 分类清晰，便于维护<br>
+        ✓ 支持图标、二维码展示
+      </p>
+      </td>
+    </tr>
+  </table>
 
 ---
 
