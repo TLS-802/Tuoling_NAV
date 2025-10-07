@@ -17,34 +17,38 @@
 
 ## ✨ 特性
 
-  <table width="100%" style="width: 100%; table-layout: fixed;">
-    <tr>
-    <td width="33%" align="center" style="width: 33.33%;">
+<div style="width: 100%; overflow-x: auto;">
+
+<table style="width: 100%; border-collapse: collapse; margin: 0; padding: 0;">
+  <tr>
+    <td style="width: 33.33%; padding: 20px; vertical-align: top; border: none;">
       <h3>🎨 现代化设计</h3>
-      <p align="left">
+      <p>
         ✓ 简洁美观的界面<br>
         ✓ 响应式布局，完美适配各种设备<br>
         ✓ 支持深色/浅色模式切换
       </p>
     </td>
-    <td width="33%" align="center" style="width: 33.33%;">
+    <td style="width: 33.33%; padding: 20px; vertical-align: top; border: none;">
       <h3>⚡ 性能优异</h3>
-      <p align="left">
+      <p>
         ✓ 基于 Hugo 静态生成，速度极快<br>
         ✓ 全球 CDN 加速，访问流畅<br>
         ✓ 资源压缩优化
       </p>
-      </td>
-    <td width="33%" align="center" style="width: 33.33%;">
+    </td>
+    <td style="width: 33.33%; padding: 20px; vertical-align: top; border: none;">
       <h3>📦 易于管理</h3>
-      <p align="left">
+      <p>
         ✓ YAML 配置，简单直观<br>
         ✓ 分类清晰，便于维护<br>
         ✓ 支持图标、二维码展示
       </p>
-      </td>
-    </tr>
-  </table>
+    </td>
+  </tr>
+</table>
+
+</div>
 
 ---
 
@@ -148,33 +152,37 @@ hugo --minify
 
 ## 🌐 部署方式
 
-<table width="100%" style="width: 100%; table-layout: fixed;">
+<div style="width: 100%; overflow-x: auto;">
+
+<table style="width: 100%; border-collapse: collapse; margin: 0; padding: 0;">
   <tr>
-    <th style="width: 25%;">平台</th>
-    <th style="width: 25%;">适用场景</th>
-    <th style="width: 50%;">特点</th>
+    <th style="width: 25%; padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">平台</th>
+    <th style="width: 25%; padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">适用场景</th>
+    <th style="width: 50%; padding: 12px; text-align: left; border-bottom: 2px solid #ddd;">特点</th>
   </tr>
   <tr>
-    <td><b>☁️ Cloudflare Pages</b></td>
-    <td>国际用户</td>
-    <td>免费 • 快速 • 零配置</td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;"><b>☁️ Cloudflare Pages</b></td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;">国际用户</td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;">免费 • 快速 • 零配置</td>
   </tr>
   <tr>
-    <td><b>📄 GitHub Pages</b></td>
-    <td>个人项目</td>
-    <td>完全免费 • 自动部署</td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;"><b>📄 GitHub Pages</b></td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;">个人项目</td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;">完全免费 • 自动部署</td>
   </tr>
   <tr>
-    <td><b>▲ Vercel</b></td>
-    <td>快速部署</td>
-    <td>一键部署 • 自动优化</td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;"><b>▲ Vercel</b></td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;">快速部署</td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;">一键部署 • 自动优化</td>
   </tr>
   <tr>
-    <td><b>🇨🇳 Tencent EdgeOne</b></td>
-    <td>国内用户</td>
-    <td>备案域名 • 国内加速</td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;"><b>🇨🇳 Tencent EdgeOne</b></td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;">国内用户</td>
+    <td style="padding: 12px; border-bottom: 1px solid #eee;">备案域名 • 国内加速</td>
   </tr>
 </table>
+
+</div>
 
 ### ☁️ Cloudflare Pages（推荐）
 
