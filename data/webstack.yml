@@ -1,5 +1,5 @@
 - taxonomy: 电商工具
-  icon: fa-shopping-cart
+  icon: fas fa-shopping-cart
   list:
   - term: 电商后台
   - term: 客服工具
@@ -582,7 +582,7 @@
       description: 拼多多原创保护平台
 
 - taxonomy: AI工具集
-  icon: fa-robot
+  icon: fas fa-robot
   list:
   - term: 写作助手
   - term: 聊天对话
@@ -1355,7 +1355,7 @@
       description: AIGC数字营销创作平台
 
 - taxonomy: 图文设计
-  icon: fa-paint-brush
+  icon: fas fa-paint-brush
   list:
   - term: 设计工具
   - term: 排版编辑
@@ -1720,7 +1720,7 @@
       description: 专业创意矢量图形设计软件
 
 - taxonomy: 电商货源
-  icon: fa-boxes
+  icon: fas fa-boxes
   list:
   - term: 综合平台
   - term: 垂直行业
@@ -2157,7 +2157,7 @@
       description: 情趣用品行业批发采购平台，安全套批发
 
 - taxonomy: 广告投放
-  icon: fa-ad
+  icon: fas fa-ad
   list:
   - term: 短视频平台
   - term: 电商平台
@@ -2436,7 +2436,7 @@
       description: 360搜索广告投放平台
 
 - taxonomy: 影音娱乐
-  icon: fa-play-circle
+  icon: fas fa-play-circle
   list:
   - term: 视频平台
   - term: 短剧平台
@@ -3124,7 +3124,7 @@
       description: 免费动画漫画分享社群
 
 - taxonomy: 学习资源
-  icon: fa-graduation-cap
+  icon: fas fa-graduation-cap
   list:
   - term: 考公考研
   - term: 职场考证
@@ -3674,7 +3674,7 @@
       description: 一个专注于古诗词的数字内容平台
 
 - taxonomy: 生活服务
-  icon: fa-home
+  icon: fas fa-home
   list:
   - term: 求职招聘
   - term: 房屋租售
@@ -4271,7 +4271,7 @@
       description: 中国电信旗下的21CN公司提供的电子邮件服务
 
 - taxonomy: 软件工具
-  icon: fa-tools
+  icon: fas fa-tools
   list:
   - term: 电脑装机
   - term: 效率工具
@@ -4788,7 +4788,7 @@
       description: Graph Maker是一个功能强大的在线图表生成工
 
 - taxonomy: 数据研究
-  icon: fa-chart-line
+  icon: fas fa-chart-line
   list:
   - term: 数据分析
   - term: 热点指数
@@ -5309,7 +5309,7 @@
       description: 新商业知识平台
 
 - taxonomy: 联系我们
-  icon: fa-envelope
+  icon: fas fa-envelope
   links:
   - title: 微信公众号
     logo: images/联系我们/公众号.png
