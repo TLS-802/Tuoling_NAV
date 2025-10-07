@@ -2,7 +2,7 @@
 # hover：     #006bde
 # onerror="javascript:this.src='{{ with $.Site.Params.cdnURL }}{{ . }}{{ end }}{{ $.Site.Params.defaultLogo }}'"
 
-baseURL               = "https://spiderbox.cn/"
+baseURL               = "https://dy.202802.xyz/"
 languageCode          = "zh-CN"
 title                 = "驼铃电商工具箱"
 theme                 = "webstack"
@@ -16,14 +16,14 @@ publishDir            = "docs"	# 站点静态文件保存目录
     author        = "TLS"
     keywords      = "驼铃电商工具箱，驼铃电商百宝箱，驼铃百宝箱，驼铃工具箱，电商百宝箱，电商工具箱，助力商家更好的运营管理店铺"
     description   = "驼铃电商工具箱，驼铃电商百宝箱，驼铃工具箱，电商百宝箱，电商工具箱"
-    cdnURL        = ""      # CDN 地址，置空则不使用 CDN
-    cdnURLPubilc  = ""      # CDN 地址，置空则不使用 CDN
-    repository    = "https://github.com/TLS-802"    # 左侧导航栏的"GitHub"
+    cdnURL        = ""                                     # CDN 地址，置空则不使用 CDN
+    cdnURLPubilc  = ""                                     # CDN 地址，置空则不使用 CDN
+    repository    = "https://github.com/TLS-802"           # 左侧导航栏的"GitHub"
     enablePreLoad = true					               # 网站完全打开前预加载动画
-    textPreLoad   = "驼铃电商工具箱 加载中..."				   # 预加载的动画文字, 只有当enablePreLoad=true时生效
+    textPreLoad   = "驼铃电商工具箱 加载中."				  # 预加载的动画文字, 只有当enablePreLoad=true时生效
     expandSidebar = false					               # 默认展开左侧边导航栏（已失效，默认不展开，会记住用户的行为，下次打开会保持）
     logosPath     = ""			                           # 网站每个导航地址logo存放地址（留空，因为YAML中已包含完整路径）
-    defaultLogo   = "images/logo.png"		           # logo图片资源不存在或者错误时, 默认显示的logo; 该参数如为空,将会一直加载对应的logo,直至成功
+    defaultLogo   = "images/logo.png"		               # logo图片资源不存在或者错误时, 默认显示的logo; 该参数如为空,将会一直加载对应的logo,直至成功
     nightMode     = false					               # 默认站点为深色(夜间)模式
     yiyan         = true                         		   # 默认启用一言服务
 
