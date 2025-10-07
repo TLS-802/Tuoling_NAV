@@ -171,7 +171,7 @@
       url: https://live.qq.com?from=dy.202802.xyz
       description: 腾讯官方直播工具
     - title: 驼铃直播中控工具
-      logo: images/驼铃标志1.png
+      logo: images/logo.png
       url: https://fbjvryq00y.feishu.cn/drive/folder/K7zIfP4IOlI5PxdberKcNgqOnCc?from=dy.202802.xyz
       description: 直播间自动弹窗工具，自动回复。
     - title: 直播中控宝
@@ -1090,7 +1090,7 @@
       url: https://www.capcut.cn?from=dy.202802.xyz
       description: 全能易用的视频剪辑软件
     - title: AuTox视频搬运
-      logo: images/驼铃标志1.png
+      logo: images/logo.png
       url: https://fbjvryq00y.feishu.cn/wiki/KnpjwnxZaijQ8SkjRtScJUkenl7#doxcn4gS05KFx8FDc98uqaCUOLe
       description: 视频一键搬运发布
     - title: 易剪媒
@@ -2451,7 +2451,7 @@
   - name: 视频平台
     links:
     - title: 驼铃Tuoling-TV
-      logo: images/驼铃标志1.png
+      logo: images/logo.png
       url: https://tls666.sylu.cc
       description: 免费影视，无需注册
     - title: YouTube
@@ -4194,7 +4194,7 @@
   - name: 邮箱登录
     links:
     - title: 驼铃TLS临时邮箱
-      logo: images/驼铃标志1.png
+      logo: images/logo.png
       url: http://mail.tlds.qzz.io
       description: 免费临时邮箱
     - title: QQ邮箱
