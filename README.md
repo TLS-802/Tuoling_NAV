@@ -14,55 +14,56 @@
 
 ---
 
-## 📁 项目结构
+## 1. 📁 项目结构
 
 <details>
 <summary><b>点击展开查看完整目录结构</b></summary>
 
 ```
 Tuoling_NAV/
-├── .github/                           # GitHub 配置
-│   ├── FUNDING.yml                    # 赞助配置
+├── .github/                           # 1. GitHub 配置
+│   ├── FUNDING.yml                    #    赞助配置
 │   └── workflows/
-│       └── spiderbox-deploy.yml       # GitHub Actions 自动部署
-├── data/                              # 数据文件目录
-│   ├── headers.yml                    # 头部配置
-│   ├── recommend.yml                  # 推荐资源
-│   └── webstack.yml                   # 主要导航数据（核心）
-├── static/                            # 静态资源目录
-│   ├── CNAME                          # 自定义域名配置
-│   ├── robots.txt                     # 搜索引擎爬虫规则
-│   ├── edgeone.json                   # EdgeOne CDN 配置
-│   └── baidu_verify_*.html            # 百度站点验证文件
-├── themes/                            # 主题目录
-│   └── webstack/                      # WebStack 主题
-│       ├── assets/                    # 前端资源
-│       │   ├── css/                   # 样式文件
-│       │   └── js/                    # JavaScript 文件
-│       ├── layouts/                   # 模板文件
-│       │   ├── _default/              # 默认模板
-│       │   ├── partials/              # 组件模板
-│       │   ├── 404.html               # 404 页面
-│       │   └── index.html             # 首页模板
-│       ├── static/                    # 主题静态资源
-│       ├── LICENSE                    # 许可证
-│       └── README.md                  # 主题说明
-├── hugo.toml                         # Hugo 配置文件（核心配置）
-├── .gitignore                         # Git 忽略规则
-├── .hugo_build.lock                   # Hugo 构建锁文件
-├── LICENSE-AGPL                       # AGPL-3.0 许可证
-├── LICENSE-APACHE                     # Apache-2.0 许可证
-└── README.md                          # 项目说明文档
+│       └── spiderbox-deploy.yml       #    GitHub Actions 自动部署
+├── data/                              # 2. 数据文件目录
+│   ├── headers.yml                    #    头部配置
+│   ├── recommend.yml                  #    推荐资源
+│   └── webstack.yml                   #    主要导航数据（核心）
+├── static/                            # 3. 静态资源目录
+│   ├── CNAME                          #    自定义域名配置
+│   ├── robots.txt                     #    搜索引擎爬虫规则
+│   ├── edgeone.json                   #    EdgeOne CDN 配置
+│   └── baidu_verify_*.html            #    百度站点验证文件
+├── themes/                            # 4. 主题目录
+│   └── webstack/                      #    WebStack 主题
+│       ├── assets/                    #    前端资源
+│       │   ├── css/                   #      样式文件
+│       │   └── js/                    #      JavaScript 文件
+│       ├── layouts/                   #    模板文件
+│       │   ├── _default/              #      默认模板
+│       │   ├── partials/              #      组件模板
+│       │   ├── 404.html               #      404 页面
+│       │   └── index.html             #      首页模板
+│       ├── static/                    #    主题静态资源
+│       ├── LICENSE                    #    许可证
+│       └── README.md                  #    主题说明
+├── hugo.toml                          # 5. Hugo 配置文件（核心配置）
+├── .gitignore                         # 6. Git 忽略规则
+├── .hugo_build.lock                   # 7. Hugo 构建锁文件
+├── LICENSE-AGPL                       # 8. AGPL-3.0 许可证
+├── LICENSE-APACHE                     # 9. Apache-2.0 许可证
+└── README.md                          # 10. 项目说明文档
 ```
 
 </details>
 
 ---
 
-## 🌐 部署方式
+## 2. 🌐 部署方式
 
-### ☁️ Cloudflare Pages（推荐）
+### 2.1 ☁️ Cloudflare Pages（推荐）
 
+部署步骤：
 1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com/)
 2. 进入 **Workers & Pages** > **Pages**
 3. 连接你的 GitHub 仓库
@@ -74,17 +75,18 @@ Tuoling_NAV/
    ```
 5. 点击 **Deploy** 🎉
 
-### 📄 GitHub Pages
+### 2.2 📄 GitHub Pages
 
 推送到 GitHub 后，GitHub Actions 会自动构建并部署到 `gh-pages` 分支。
 
 ```bash
+# 添加、提交并推送到主分支
 git add .
 git commit -m "Update site"
 git push origin main
 ```
 
-### ▲ Vercel
+### 2.3 ▲ Vercel
 
 1. 访问 [Vercel](https://vercel.com/)
 2. 点击 **Import Project**
@@ -94,9 +96,9 @@ git push origin main
 
 ---
 
-## ⚙️ 配置指南
+## 3. ⚙️ 配置指南
 
-### 基础配置
+### 3.1 基础配置
 
 编辑 `hugo.toml` 修改网站信息：
 
@@ -111,7 +113,7 @@ title = "你的网站名称"
     repository = "https://github.com/yourusername/yourrepo"
 ```
 
-### 添加导航链接
+### 3.2 添加导航链接
 
 编辑 `data/webstack.yml`：
 
@@ -125,25 +127,31 @@ title = "你的网站名称"
       description: 网站描述
 ```
 
-### 自定义样式
+### 3.3 自定义样式
 
 修改 `themes/webstack/assets/css/custom-style.css` 添加自定义样式。
 
 ---
 
-## 🤝 贡献指南
+## 4. 🤝 贡献指南
 
 欢迎提交 Issue 和 Pull Request！
 
-1. **Fork** 本项目
+**贡献流程：**
+1. **Fork** 本项目到你的 GitHub 账户
 2. 创建特性分支：`git checkout -b feature/amazing-feature`
 3. 提交更改：`git commit -m 'Add amazing feature'`
 4. 推送到分支：`git push origin feature/amazing-feature`
 5. 提交 **Pull Request**
 
+**注意事项：**
+- 确保代码符合项目规范
+- 添加适当的测试用例
+- 更新相关文档
+
 ---
 
-## 📄 开源协议
+## 5. 📄 开源协议
 
 本项目采用双协议授权：
 
@@ -152,34 +160,52 @@ title = "你的网站名称"
 
 > ⚠️ **重要提示**：使用本项目必须开源，并保留原始版权信息。
 
+**协议选择说明：**
+- AGPL-3.0：要求衍生作品开源
+- Apache-2.0：更宽松的商业友好协议
+
 ---
 
-## 💡 技术栈
+## 6. 💡 技术栈
 
+**核心技术：**
 ![Hugo](https://img.shields.io/badge/Hugo-FF4088?style=for-the-badge&logo=hugo&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
+**相关工具：**
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
+
 ---
 
-## 🙏 致谢
+## 7. 🙏 致谢
 
 感谢以下项目和服务：
 
+**核心技术：**
 - [Hugo](https://gohugo.io/) - 静态网站生成器
 - [WebStack](https://github.com/WebStackPage/WebStackPage.github.io) - 主题灵感来源
+
+**工具与服务：**
 - [Font Awesome](https://fontawesome.com/) - 图标库
 - [Cloudflare](https://www.cloudflare.com/) - CDN 服务
 - [Tencent EdgeOne](https://edgeone.ai/) - 国内 CDN 加速
 
 ---
 
-## 📞 联系方式
+## 8. 📞 联系方式
 
+**项目维护者：**
 - **作者**：TLS
 - **GitHub**：[@TLS-802](https://github.com/TLS-802)
 - **Email**：admin@itbob.cn
+
+**支持渠道：**
+- 提交 Issue 报告问题
+- 通过 Email 联系技术支持
+- 参与社区讨论
 
 ---
 
