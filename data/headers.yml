@@ -1,14 +1,6 @@
-#- item: 首页
-#  icon: fas fa-home
-#  link: "./"
-# - item: 站长博客
-#   icon: fas fa-blog
-#   link: https://www.itbob.cn/
-
 - item: 联系站长/交流群
   icon: fas fa-comments
-  link: https://bbs.wukongsec.com/
-#  link: https://txc.qq.com/products/678094
+  link: https://fbjvryq00y.feishu.cn/sheets/VCTJsFrvthrwLftVVzdcxNnHn0e?sheet=nzXrEA
 
 - item: 虫系列
   icon: fas fa-spider
