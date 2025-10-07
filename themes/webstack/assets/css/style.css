@@ -1421,19 +1421,6 @@ footer.main-footer {
     padding: 1px 5px !important
 }
 
-.friendlink a {
-    position: relative;
-    display: inline-block;
-    margin: .25rem .5rem .25rem .25rem
-}
-
-.friendlink a:before {
-    content: '\2022';
-    display: inline-block;
-    position: relative;
-    margin-right: 5px
-}
-
 @media (max-width: 767.98px) {
     footer.main-footer .footer-text {
         text-align: center;

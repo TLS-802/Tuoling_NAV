@@ -70,7 +70,6 @@ Tuoling_NAV/
 │   └── workflows/
 │       └── spiderbox-deploy.yml        # GitHub Actions 自动部署
 ├── data/                               # 数据文件目录
-│   ├── friendlinks.yml                 # 友情链接
 │   ├── headers.yml                     # 头部配置
 │   ├── recommend.yml                   # 推荐资源
 │   └── webstack.yml                    # 主要导航数据（核心）
@@ -276,7 +275,6 @@ title = "你的网站名称"
 
 - **webstack.yml** - 主要导航数据（必需）
 - **recommend.yml** - 推荐资源
-- **friendlinks.yml** - 友情链接
 - **headers.yml** - 顶部配置
 
 ---

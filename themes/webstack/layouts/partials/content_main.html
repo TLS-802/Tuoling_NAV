@@ -179,15 +179,4 @@
     {{ end }}
     {{ end }}
 
-    <h4 class="text-gray text-lg mb-4">
-        <i class="fas fa-link mr-2" id="friendlink"></i>友情链接
-    </h4>
-    <div class="friendlink text-xs card">
-        <div class="card-body">
-            {{ range .Site.Data.friendlinks }}
-            <a href="{{ .url }}" title="{{ .description }}" target="_blank">{{ .title }}</a>
-            {{ end }}
-        </div>
-    </div>
-
 </div>
