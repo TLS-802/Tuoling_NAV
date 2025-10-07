@@ -88,13 +88,14 @@
     {{ range .Site.Data.webstack }}
     {{ if .list }}
     {{ $taxonomy := .taxonomy }} <!-- 避免同名二级导航定位不正确的问题 -->
-    {{ range .list }}
+    {{ $tabs := .tabs }} <!-- 获取tabs数据 -->
+    {{ range .tabs }}
     <!--正文网址导航-->
-    <!-- {{ .term }} -->
+    <!-- {{ .name }} -->
     <div class="d-flex flex-fill">
         <h4 class="text-gray text-lg mb-4">
-            <i class="fas fa-stream site-tag mr-1" id="{{ md5 (printf "%s-%s" $taxonomy .term) }}"></i>
-            {{ .term }}
+            <i class="fas fa-stream site-tag mr-1" id="{{ md5 (printf "%s-%s" $taxonomy .name) }}"></i>
+            {{ .name }}
         </h4>
         <div class="flex-fill"></div>
         <!--a class='btn-move text-xs' href='#'>more+</a-->
@@ -143,7 +144,7 @@
         {{ end }}
     </div><!--end row-->
     <br />
-    <!--END {{ .term }} -->
+    <!--END {{ .name }} -->
     {{ end }}
     {{ else }}
     <!-- 时间样式 -->
