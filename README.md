@@ -14,22 +14,6 @@
 
 ---
 
-## ✨ 特性
-
-<div style="width: 100%; overflow-x: auto;">
-
-| 特性 | 描述 |
-|------|------|
-| 🎨 **现代化设计** | 简洁美观的界面，响应式布局，支持深色/浅色模式切换 |
-| ⚡ **性能优异** | 基于 Hugo 静态生成，全球 CDN 加速，资源压缩优化 |
-| 📦 **易于管理** | YAML 配置简单直观，分类清晰，支持图标、二维码展示 |
-| 🔍 **全站搜索** | 实时搜索所有导航链接，快速定位所需资源 |
-| 📱 **响应式适配** | 完美适配手机、平板、电脑等各种设备 |
-
-</div>
-
----
-
 ## 📁 项目结构
 
 <details>
@@ -82,19 +66,6 @@ Tuoling_NAV/
 - [Hugo](https://gohugo.io/) >= 0.139.4
 - [Git](https://git-scm.com/)
 
-### 📥 安装与运行
-
-```bash
-# 克隆项目
-git clone https://github.com/yourusername/yourrepo.git
-cd yourrepo
-
-# 本地预览（开发模式）
-hugo server -D
-
-# 访问 http://localhost:1313 查看效果
-```
-
 ### 🔨 构建生产版本
 
 ```bash
@@ -107,13 +78,6 @@ hugo --minify
 ---
 
 ## 🌐 部署方式
-
-| 平台 | 适用场景 | 特点 |
-|------|----------|------|
-| ☁️ **Cloudflare Pages** | 国际用户 | 免费 • 快速 • 零配置 |
-| 📄 **GitHub Pages** | 个人项目 | 完全免费 • 自动部署 |
-| ▲ **Vercel** | 快速部署 | 一键部署 • 自动优化 |
-| 🇨🇳 **Tencent EdgeOne** | 国内用户 | 备案域名 • 国内加速 |
 
 ### ☁️ Cloudflare Pages（推荐）
 
@@ -182,18 +146,6 @@ title = "你的网站名称"
 ### 自定义样式
 
 修改 `themes/webstack/assets/css/custom-style.css` 添加自定义样式。
-
----
-
-## 📊 数据管理
-
-所有内容通过 YAML 文件管理，位于 `data/` 目录：
-
-| 文件 | 用途 |
-|------|------|
-| **webstack.yml** | 主要导航数据（必需） |
-| **recommend.yml** | 推荐资源管理 |
-| **headers.yml** | 顶部配置信息 |
 
 ---
 
