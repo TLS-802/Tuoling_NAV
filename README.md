@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center">SpiderBox - 虫盒 - 爬虫逆向资源导航站</h1>
+<h1 align="center">SpiderBox - 爬虫逆向资源导航站</h1>
 <p align="center">
   <a>项目处于初期建设当中，不代表最终版本，更多内容即将到来...</a>
   <br/>

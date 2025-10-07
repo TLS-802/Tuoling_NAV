@@ -26,7 +26,6 @@ publishDir            = "docs"	# 站点静态文件保存目录
     defaultLogo   = "images/logo/default.png"		       # logo图片资源不存在或者错误时, 默认显示的logo; 该参数如为空,将会一直加载对应的logo,直至成功
     nightMode     = false					               # 默认站点为深色(夜间)模式
     yiyan         = true                         		   # 默认启用一言服务
-    showArticle   = true					               # 默认显示最新文章
 
 [params.seo]    
     baiduhmid     = "eb388f839300d98c08f2a2a5edc02ec1"     # 百度统计 hm.src 的 ID
