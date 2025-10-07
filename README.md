@@ -17,7 +17,7 @@
 
 ## ✨ 特性
 
-  <table>
+  <table width="100%">
     <tr>
     <td width="33%" align="center">
       <h3>🎨 现代化设计</h3>
@@ -148,7 +148,7 @@ hugo --minify
 
 ## 🌐 部署方式
 
-<table>
+<table width="100%">
   <tr>
     <th>平台</th>
     <th>适用场景</th>
