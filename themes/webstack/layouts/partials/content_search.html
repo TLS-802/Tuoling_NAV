@@ -7,7 +7,6 @@
                         <div class="anchor" style="position: absolute; left: 50%; opacity: 0;"></div>
                         <label for="type-kaifa" data-id="group-a" class="active"><span>搜索</span></label>
                         <label for="type-github" data-id="group-b"><span>社区</span></label>
-                        <label for="type-web" data-id="group-c"><span>API</span></label>
                         <label for="type-boss" data-id="group-d"><span>求职</span></label>
                         <label for="type-taobao" data-id="group-e"><span>购物</span></label>
                         <label for="type-douyin" data-id="group-f"><span>娱乐</span></label>
@@ -40,21 +39,9 @@
                                 value="https://cn.bing.com/search?q=" data-placeholder="微软 Bing 搜索">
                             <label for="type-bing"><span class="text-muted">必应</span></label>
                         </li>
-                        <li><input hidden="" type="radio" name="type" id="type-fsoufsou"
-                            value="https://fsoufsou.com/search?q=" data-placeholder="国内版 Google 搜索">
-                        <label for="type-fsoufsou"><span class="text-muted">F 搜</span></label>
-                        </li>
-                        <li><input hidden="" type="radio" name="type" id="type-duckduckgo"
-                                value="https://duckduckgo.com/?q=" data-placeholder="Duck Duck Go">
-                            <label for="type-duckduckgo"><span class="text-muted">DDG</span></label>
-                        </li>
                         <li><input hidden="" type="radio" name="type" id="type-wikipedia"
                             value="https://wikipedia.org/w/index.php?search=" data-placeholder="维基百科">
                         <label for="type-wikipedia"><span class="text-muted">维基</span></label>
-                        </li>
-                        <li><input hidden="" type="radio" name="type" id="type-yandex"
-                            value="https://yandex.com/search/?text=" data-placeholder="Yandex">
-                        <label for="type-yandex"><span class="text-muted">Yandex</span></label>
                         </li>
                     </ul>
                 </div>
@@ -63,10 +50,6 @@
                         <li><input hidden="" type="radio" name="type" id="type-github"
                             value="https://github.com/search?type=repositories&q=" data-placeholder="GitHub 代码搜索">
                         <label for="type-github"><span class="text-muted">GitHub</span></label>
-                        </li>
-                        <li><input hidden="" type="radio" name="type" id="type-stackoverflow"
-                                value="https://stackoverflow.com/search?q=" data-placeholder="Stack Overflow 搜索">
-                            <label for="type-stackoverflow"><span class="text-muted">StackOverflow</span></label>
                         </li>
                         <li><input hidden="" type="radio" name="type" id="type-csdn"
                                 value="https://so.csdn.net/so/search?q=" data-placeholder="成就一亿技术人">
@@ -84,41 +67,6 @@
                             value="https://www.52pojie.cn/search.php?mod=forum&searchid=16407&searchsubmit=yes&kw=" data-placeholder="吾爱破解">
                         <label for="type-52pojie"><span class="text-muted">吾爱</span></label>
                         </li>
-                        <li><input hidden="" type="radio" name="type" id="type-kanxue"
-                            value="https://bbs.kanxue.com/search.htm?keyword=" data-placeholder="看雪安全社区">
-                        <label for="type-kanxue"><span class="text-muted">看雪</span></label>
-                        </li>
-                        <!--<li><input hidden="" type="radio" name="type" id="type-nightteam"
-                            value="https://bbs.nightteam.cn/search.php?mod=forum&searchid=12&searchsubmit=yes&kw=" data-placeholder="夜幕爬虫安全论坛">
-                        <label for="type-nightteam"><span class="text-muted">夜幕</span></label>
-                        </li>-->
-                    </ul>
-                </div>
-                <div class="search-group group-c">
-                    <ul class="search-type">
-                        <li><input hidden="" type="radio" name="type" id="type-web" value="https://developer.mozilla.org/search?q="
-                                data-placeholder="eg: User-Agent">
-                            <label for="type-web"><span class="text-muted">Web API</span></label>
-                        </li>
-                        <li><input hidden="" type="radio" name="type" id="type-android" value="https://developer.android.com/s/results?q="
-                            data-placeholder="eg: java.lang.System">
-                        <label for="type-android"><span class="text-muted">Android API</span></label>
-                        </li>
-                        <li><!--<input hidden="" type="radio" name="type" id="type-adbshell" value="https://adbshell.com/"
-                            data-placeholder=""> -->
-                            <a href="https://adbshell.com/" target="_blank">
-                                <label for="type-adbshell"><span class="text-muted">ADB Shell</span></label>
-                            </a>
-                        </li>
-                        <li><input hidden="" type="radio" name="type" id="type-quickref" value="https://quickref.me/?q="
-                            data-placeholder="eg: python">
-                        <label for="type-quickref"><span class="text-muted">QuickRef</span></label>
-                        </li>
-                        <li><input hidden="" type="radio" name="type" id="type-linuxcool" value="
-                            https://www.linuxcool.com/?s="
-                            data-placeholder="eg: grep">
-                        <label for="type-linuxcool"><span class="text-muted">Linux 命令</span></label>
-                        </li>
                     </ul>
                 </div>
                 <div class="search-group group-d">
@@ -134,10 +82,6 @@
                         <li><input hidden="" type="radio" name="type" id="type-51job" value="https://search.51job.com/?"
                                 data-placeholder="前程无忧">
                             <label for="type-51job"><span class="text-muted">前程无忧</span></label>
-                        </li>
-                        <li><input hidden="" type="radio" name="type" id="type-lagou"
-                                value="https://www.lagou.com/jobs/list_" data-placeholder="拉钩网">
-                            <label for="type-lagou"><span class="text-muted">拉钩网</span></label>
                         </li>
                         <li><input hidden="" type="radio" name="type" id="type-liepin"
                                 value="https://www.liepin.com/zhaopin/?key=" data-placeholder="猎聘网">
@@ -163,14 +107,6 @@
                                 value="https://search.suning.com/" data-placeholder="苏宁易购">
                             <label for="type-suning"><span class="text-muted">苏宁</span></label>
                         </li>
-                        <li><input hidden="" type="radio" name="type" id="type-163" value="https://you.163.com/search?keyword="
-                            data-placeholder="网易严选">
-                            <label for="type-163"><span class="text-muted">网易</span></label>
-                        </li>
-                        <li><input hidden="" type="radio" name="type" id="type-xiaomiyoupin" value="https://www.xiaomiyoupin.com/search?keyword="
-                            data-placeholder="小米有品">
-                            <label for="type-xiaomiyoupin"><span class="text-muted">小米</span></label>
-                        </li>
                         <li><input hidden="" type="radio" name="type" id="type-vip" value="https://category.vip.com/suggest.php?keyword="
                                 data-placeholder="唯品会">
                             <label for="type-vip"><span class="text-muted">唯品会</span></label>
@@ -190,10 +126,6 @@
                         <li><input hidden="" type="radio" name="type" id="type-kuaishou"
                                 value="https://www.kuaishou.com/search/video?searchKey=" data-placeholder="快手，拥抱每一种生活">
                             <label for="type-kuaishou"><span class="text-muted">快手</span></label>
-                        </li>
-                        <li><input hidden="" type="radio" name="type" id="type-ixigua"
-                                value="https://www.ixigua.com/search/" data-placeholder="西瓜视频，点亮对生活的好奇心">
-                            <label for="type-ixigua"><span class="text-muted">西瓜</span></label>
                         </li>
                         <li><input hidden="" type="radio" name="type" id="type-bilibili" value="https://search.bilibili.com/all?keyword="
                             data-placeholder="哔哩哔哩 (゜-゜)つロ 干杯~-bilibili">
