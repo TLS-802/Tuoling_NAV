@@ -23,6 +23,13 @@
                                 </svg>
                             </label>
                         </div>
+                        
+                        <!-- 本地搜索按钮 -->
+                        <div class="header-search-btn" style="margin-left: 15px;">
+                            <a href="javascript:" id="search-btn" title="本地搜索 (Ctrl+F)" aria-label="打开本地搜索">
+                                <i class="fas fa-search" style="font-size: 18px; color: #666;"></i>
+                            </a>
+                        </div>
 
                         <ul class="navbar-nav site-menu" style="margin-right: 16px;">
                             {{ range .Site.Data.headers }}

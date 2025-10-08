@@ -34,10 +34,12 @@ var theme = {
 <script type='text/javascript' src='{{ $app.RelPermalink }}' id='app-js'></script>
 {{ $contentSearch := resources.Get "js/content-search.js" | resources.Minify | fingerprint}}
 <script type="text/javascript" src="{{ $contentSearch.RelPermalink }}" id="content-search-js"></script>
-{{ if .Site.Params.pinyin.enable }}
+{{ $lazyload := resources.Get "js/lazyload.min.js" | fingerprint}}
+<script type="text/javascript" src="{{ $lazyload.RelPermalink }}" id="lazyload-js"></script>
 {{ $pinyinPro := resources.Get "js/pinyin-pro-3.19.0.min.js" | fingerprint}}
 <script type="text/javascript" src="{{ $pinyinPro.RelPermalink }}" id="pinyin-pro-js"></script>
-{{ end }}
+{{ $localSearch := resources.Get "js/local-search.js" | fingerprint}}
+<script type="text/javascript" src="{{ $localSearch.RelPermalink }}" id="local-search-js"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){

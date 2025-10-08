@@ -44,6 +44,14 @@
                 <div class="sidebar-scroll">
                     <div class="sidebar-menu-inner">
                         <ul>
+                            <!-- 移动端搜索按钮 -->
+                            <li class="sidebar-item d-md-none">
+                                <a href="javascript:" id="search-btn-mobile-sidebar" title="本地搜索">
+                                    <i class="fas fa-search fa-lg icon-fw icon-lg mr-2"></i>
+                                    <span>本地搜索</span>
+                                </a>
+                            </li>
+                            
                             {{ range .Site.Data.recommend }}
                             {{ if .links }}
                             <li class="sidebar-item">
