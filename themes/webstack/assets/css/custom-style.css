@@ -699,7 +699,7 @@ h4 + .tab-container {
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 900px;
-    padding: 30px 35px 25px 35px;
+    padding: 30px 0 25px 0; /* 使输入框与模态框同宽 */
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 0 8px 32px rgba(0, 0, 0, .15);
@@ -763,7 +763,7 @@ h4 + .tab-container {
 /* 搜索输入框 */
 #search-input {
     width: 100%;
-    padding: 14px 15px 14px 42px;
+    padding: 14px 15px; /* 移除图标后恢复左右统一内边距 */
     border: 2px solid #e0e0e0;
     outline: none;
     background: #fff;
@@ -940,7 +940,7 @@ h4 + .tab-container {
     #local-search-box {
         width: 75%;
         max-width: 1000px;
-        padding: 35px 50px 30px 50px;
+        padding: 35px 0 30px 0; /* 保持输入框与模态框同宽 */
     }
     
     #search-results {
@@ -961,7 +961,7 @@ h4 + .tab-container {
     #local-search-box {
         width: 88%;
         max-width: 650px;
-        padding: 28px 35px 23px 35px;
+        padding: 28px 0 23px 0;
     }
     
     #search-results {
@@ -974,7 +974,7 @@ h4 + .tab-container {
     #local-search-box {
         width: 80%;
         max-width: 750px;
-        padding: 32px 40px 27px 40px;
+        padding: 32px 0 27px 0;
     }
     
     #search-results {
@@ -1034,12 +1034,12 @@ h4 + .tab-container {
 @media (max-width: 520px) {
     #local-search-box {
         width: 94%;
-        padding: 25px 25px 20px 25px;
+        padding: 25px 0 20px 0;
     }
     
     #search-input {
         font-size: 14px;
-        padding: 12px 12px 12px 38px;
+        padding: 12px 12px; /* 小屏保持统一内边距 */
     }
     
     #local-search-box .search-icon {
