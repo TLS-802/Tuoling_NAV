@@ -703,6 +703,7 @@ h4 + .tab-container {
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 0 8px 32px rgba(0, 0, 0, .15);
+    text-align: center;
 }
 
 /* 暗黑模式下的搜索框 */
@@ -715,6 +716,8 @@ h4 + .tab-container {
 #local-search-box form {
     position: relative;
     margin: 0 auto;
+    max-width: 100%;
+    text-align: left;
 }
 
 /* 搜索图标 */
@@ -731,7 +734,6 @@ h4 + .tab-container {
 /* 搜索输入框 */
 #search-input {
     width: 100%;
-    padding-left: 35px;
     padding: 14px 15px 14px 35px;
     border: 2px solid transparent;
     outline: none;
@@ -739,6 +741,8 @@ h4 + .tab-container {
     border-radius: 8px;
     transition: all 0.3s ease;
     font-size: 15px;
+    box-sizing: border-box;
+    text-align: left;
 }
 
 .io-black-mode #search-input {
@@ -766,6 +770,7 @@ h4 + .tab-container {
     margin: 15px 0 10px 0;
     overflow-y: auto;
     overflow-x: hidden;
+    text-align: left;
 }
 
 #search-results span {
@@ -793,6 +798,7 @@ h4 + .tab-container {
     cursor: pointer;
     display: flex;
     align-items: center;
+    text-align: left;
 }
 
 #search-results li:hover {
