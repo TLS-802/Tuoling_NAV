@@ -455,3 +455,104 @@ footer.main-footer .footer-text a:hover {
 .menu-item-has-children {
     margin-right: 16px;
 }
+
+/* 标签式二级菜单样式 */
+.nav-tabs {
+    border-bottom: 2px solid #dee2e6;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: -2px;
+}
+
+.nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    color: #6c757d;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: #e9ecef #e9ecef #dee2e6;
+    background-color: #f8f9fa;
+    color: #0084ff;
+}
+
+.nav-tabs .nav-link.active {
+    color: #0084ff;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+    font-weight: 600;
+    position: relative;
+}
+
+.nav-tabs .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #0084ff;
+}
+
+.tab-content {
+    padding-top: 1rem;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* 暗黑模式下的标签样式 */
+.io-black-mode .nav-tabs {
+    border-bottom-color: #495057;
+}
+
+.io-black-mode .nav-tabs .nav-link {
+    color: #adb5bd;
+}
+
+.io-black-mode .nav-tabs .nav-link:hover {
+    border-color: #495057 #495057 #495057;
+    background-color: #343a40;
+    color: #0084ff;
+}
+
+.io-black-mode .nav-tabs .nav-link.active {
+    color: #0084ff;
+    background-color: #1a1d20;
+    border-color: #495057 #495057 #1a1d20;
+}
+
+/* 响应式设计 - 移动端标签样式 */
+@media (max-width: 767.98px) {
+    .nav-tabs {
+        overflow-x: auto;
+        overflow-y: hidden;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-tabs .nav-item {
+        flex: 0 0 auto;
+    }
+    
+    .nav-tabs .nav-link {
+        white-space: nowrap;
+        padding: 0.5rem 0.75rem;
+        font-size: 13px;
+    }
+}

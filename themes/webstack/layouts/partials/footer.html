@@ -47,36 +47,91 @@ var theme = {
 <script>        
     $(document).ready(function(){
         setTimeout(function () {
-            if ($('a.smooth[href="' + window.location.hash + '"]')[0]) {
-                $('a.smooth[href="' + window.location.hash + '"]').click();
-            }else if (window.location.hash != '') {
-                $("html, body").animate({
-                    scrollTop: $(window.location.hash).offset().top - 90
-                }, {
-                    duration: 500,
-                    easing: "swing"
-                });
+            var hash = window.location.hash;
+            if (hash) {
+                // 优先检查是否为标签页
+                var $tabPane = $(hash);
+                if ($tabPane.length && $tabPane.hasClass('tab-pane')) {
+                    // 激活标签
+                    if (window.activateTabFromHash) {
+                        window.activateTabFromHash(hash);
+                    }
+                    // 滚动到标签容器
+                    var $tabsContainer = $('a[href="' + hash + '"][data-toggle="tab"]').closest('.nav-tabs');
+                    if ($tabsContainer.length) {
+                        $("html, body").animate({
+                            scrollTop: $tabsContainer.offset().top - 90
+                        }, {
+                            duration: 500,
+                            easing: "swing"
+                        });
+                    }
+                } else if ($('a.smooth[href="' + hash + '"]')[0]) {
+                    // 普通smooth链接
+                    $('a.smooth[href="' + hash + '"]').click();
+                } else if ($(hash).length) {
+                    // 普通锚点滚动
+                    $("html, body").animate({
+                        scrollTop: $(hash).offset().top - 90
+                    }, {
+                        duration: 500,
+                        easing: "swing"
+                    });
+                }
             }
-        }, 300);
+        }, 400);
         $(document).on('click','a.smooth',function(ev) {
             if($('#sidebar').hasClass('show') && !$(this).hasClass('change-href')){
                 $('#sidebar').modal('toggle');
             }
-            if($(this).attr("href").substr(0, 1) == "#"){
-                $("html, body").animate({
-                    scrollTop: $($(this).attr("href")).offset().top - 90
-                }, {
-                    duration: 500,
-                    easing: "swing"
-                });
+            
+            var href = $(this).attr("href");
+            if(href && href.substr(0, 1) == "#"){
+                var $target = $(href);
+                
+                // 检查目标是否为标签面板
+                if ($target.length && $target.hasClass('tab-pane')) {
+                    // 先激活标签
+                    var $tabLink = $('a[href="' + href + '"][data-toggle="tab"]');
+                    if ($tabLink.length) {
+                        $tabLink.tab('show');
+                        
+                        // 延迟滚动，确保标签切换完成
+                        setTimeout(function() {
+                            var $tabsContainer = $tabLink.closest('.nav-tabs');
+                            if ($tabsContainer.length) {
+                                $("html, body").animate({
+                                    scrollTop: $tabsContainer.offset().top - 90
+                                }, {
+                                    duration: 500,
+                                    easing: "swing"
+                                });
+                            }
+                        }, 100);
+                        return false; // 阻止默认行为
+                    }
+                } else {
+                    // 普通锚点滚动
+                    $("html, body").animate({
+                        scrollTop: $target.offset().top - 90
+                    }, {
+                        duration: 500,
+                        easing: "swing"
+                    });
+                }
             }
+            
             if($(this).hasClass('go-search-btn')){
                 $('#search-text').focus();
             }
-            if(!$(this).hasClass('change-href')){
+            
+            // 只有当目标不是标签面板时，才执行原有的menu逻辑
+            if(!$(this).hasClass('change-href') && !($target.length && $target.hasClass('tab-pane'))){
                 var menu =  $("a"+$(this).attr("href"));
-                menu.click();
-                toTarget(menu.parent().parent(),true,true);
+                if(menu.length){
+                    menu.click();
+                    toTarget(menu.parent().parent(),true,true);
+                }
             }
         });
         $(document).on('click','a.tab-noajax',function(ev) {

@@ -1185,25 +1185,44 @@ function ChromBookmarkConverter(){this.bookmarks={folders:[]},this.stripUnneeded
 // 标签式二级菜单自动激活功能
 (function($){
     // 处理标签激活的函数
-    function activateTabFromHash() {
-        var hash = window.location.hash;
+    function activateTabFromHash(hash) {
+        if (!hash) {
+            hash = window.location.hash;
+        }
+        
         if (hash) {
+            console.log('[Tab Debug] 尝试激活标签:', hash);
+            
             // 查找对应的标签面板
             var $tabPane = $(hash);
             if ($tabPane.length && $tabPane.hasClass('tab-pane')) {
+                console.log('[Tab Debug] 找到标签面板');
+                
                 // 查找对应的标签按钮
                 var $tabLink = $('a[href="' + hash + '"][data-toggle="tab"]');
                 if ($tabLink.length) {
+                    console.log('[Tab Debug] 找到标签按钮，激活中...');
+                    
                     // 激活标签
                     $tabLink.tab('show');
+                    
+                    console.log('[Tab Debug] 标签已激活');
+                    return true;
+                } else {
+                    console.log('[Tab Debug] 未找到标签按钮');
                 }
+            } else {
+                console.log('[Tab Debug] 目标不是标签面板');
             }
         }
+        return false;
     }
     
-    // 页面加载时检查hash
+    // 页面加载时检查hash（延迟执行，确保DOM完全加载）
     $(document).ready(function() {
-        activateTabFromHash();
+        setTimeout(function() {
+            activateTabFromHash();
+        }, 400);
     });
     
     // 监听hash变化
@@ -1211,31 +1230,17 @@ function ChromBookmarkConverter(){this.bookmarks={folders:[]},this.stripUnneeded
         activateTabFromHash();
     });
     
-    // 监听侧边栏链接点击
-    $(document).on('click', '.sidebar-menu a[href^="#"]', function(e) {
+    // 监听标签点击，更新URL hash（不触发滚动）
+    $(document).on('click', '.nav-tabs .nav-link[data-toggle="tab"]', function(e) {
         var hash = $(this).attr('href');
-        var $tabPane = $(hash);
-        
-        // 如果目标是标签面板，激活它
-        if ($tabPane.length && $tabPane.hasClass('tab-pane')) {
-            e.preventDefault();
-            
-            // 激活标签
-            var $tabLink = $('a[href="' + hash + '"][data-toggle="tab"]');
-            if ($tabLink.length) {
-                $tabLink.tab('show');
-                
-                // 延迟滚动，确保标签切换动画完成
-                setTimeout(function() {
-                    // 滚动到标签导航区域
-                    var $tabsContainer = $tabLink.closest('.nav-tabs');
-                    if ($tabsContainer.length) {
-                        $('html, body').animate({
-                            scrollTop: $tabsContainer.offset().top - 100
-                        }, 500);
-                    }
-                }, 100);
+        if (hash && hash.substr(0, 1) == "#") {
+            // 更新URL但不触发hashchange事件
+            if (history.replaceState) {
+                history.replaceState(null, null, hash);
             }
         }
     });
+    
+    // 暴露函数供外部调用
+    window.activateTabFromHash = activateTabFromHash;
 })(jQuery);
