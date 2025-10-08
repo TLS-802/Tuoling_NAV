@@ -707,7 +707,7 @@ h4 + .tab-container {
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 0 8px 32px rgba(0, 0, 0, .15);
-    overflow: visible;
+    overflow: hidden; /* 防止内容超出 */
     box-sizing: border-box;
     display: block;
 }
@@ -751,7 +751,10 @@ h4 + .tab-container {
 #local-search-box form {
     position: relative;
     width: 100%;
+    max-width: 100%;
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* 移除表单伪元素 */
@@ -764,6 +767,7 @@ h4 + .tab-container {
 /* 搜索输入框 */
 #search-input {
     width: 100%;
+    max-width: 100%;
     padding: 14px 15px;
     border: 2px solid #e0e0e0;
     outline: none;
@@ -773,6 +777,7 @@ h4 + .tab-container {
     font-size: 15px;
     box-sizing: border-box;
     margin: 0;
+    display: block;
 }
 
 #search-input::placeholder {
@@ -802,6 +807,7 @@ h4 + .tab-container {
 /* 搜索结果列表 */
 #search-results {
     width: 100%;
+    max-width: 100%;
     min-height: 100px;
     max-height: 350px;
     list-style-type: none;
@@ -810,6 +816,7 @@ h4 + .tab-container {
     overflow-y: auto;
     overflow-x: hidden;
     box-sizing: border-box;
+    display: block;
 }
 
 #search-results > span {
@@ -928,10 +935,10 @@ h4 + .tab-container {
 /* 关闭按钮 */
 #local-search-close {
     position: absolute;
-    top: -40px;
+    top: 15px; /* 模态框内部右上角 */
     right: 15px;
-    font-size: 28px;
-    color: #fff;
+    font-size: 24px;
+    color: #999;
     cursor: pointer;
     transition: all 0.3s ease;
     opacity: 0.8;
@@ -941,6 +948,15 @@ h4 + .tab-container {
 #local-search-close:hover {
     transform: scale(1.15) rotate(90deg);
     opacity: 1;
+    color: #666;
+}
+
+.io-black-mode #local-search-close {
+    color: #bbb;
+}
+
+.io-black-mode #local-search-close:hover {
+    color: #fff;
 }
 
 /* 响应式 - 大屏幕 */
@@ -993,6 +1009,7 @@ h4 + .tab-container {
 /* 搜索提示区域 */
 .search-tips {
     width: 100%;
+    max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1071,9 +1088,9 @@ h4 + .tab-container {
     }
     
     #local-search-close {
-        top: -35px;
+        top: 10px;
         right: 10px;
-        font-size: 24px;
+        font-size: 20px;
     }
     
     .search-tips {
