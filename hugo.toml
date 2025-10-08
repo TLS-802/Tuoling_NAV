@@ -25,7 +25,7 @@ publishDir            = "docs"	# 站点静态文件保存目录
     logosPath     = ""			                           # 网站每个导航地址logo存放地址（留空，因为YAML中已包含完整路径）
     defaultLogo   = "images/logo.png"		               # logo图片资源不存在或者错误时, 默认显示的logo; 该参数如为空,将会一直加载对应的logo,直至成功
     nightMode     = false					               # 默认站点为深色(夜间)模式
-    yiyan         = true                         		   # 默认启用一言服务
+    yiyan         = false                         		   # 默认启用一言服务（设为false可避免Connection failed错误）
 
 [params.seo]    
     baiduhmid     = ""     # 百度统计 hm.src 的 ID（已禁用）
