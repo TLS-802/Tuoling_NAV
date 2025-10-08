@@ -49,13 +49,28 @@ function initLocalSearch() {
     // 封装搜索逻辑
     function search() {
         var keyword = this.value;  
+        var placeholder = document.getElementById('search-placeholder');
+        
         if (keyword.trim() === '') {
-            resultsList.innerHTML = '<span>搜索本页内容</span>';
+            resultsList.innerHTML = '';
+            if (placeholder) {
+                placeholder.textContent = '搜索本页内容';
+                placeholder.style.display = 'block';
+            }
             return;  
         }
         if (encodeURIComponent(keyword.trim()).length === 1) {
-            resultsList.innerHTML = '<span><strong>提示：</strong>至少输入2个字母、数字或1个汉字</span>';
+            resultsList.innerHTML = '';
+            if (placeholder) {
+                placeholder.innerHTML = '<strong>提示：</strong>至少输入2个字母、数字或1个汉字';
+                placeholder.style.display = 'block';
+            }
             return;  
+        }
+        
+        // 隐藏占位符
+        if (placeholder) {
+            placeholder.style.display = 'none';
         }
         
         var xCards = document.getElementsByClassName('url-card');  
@@ -138,8 +153,13 @@ function initLocalSearch() {
             if (typeof $ !== 'undefined' && typeof $.fn.lazyload !== 'undefined') {
                 $("img.lazy").lazyload();
             }
-        } else {  
-            resultsList.innerHTML = '<span>没有找到匹配的内容。</span>';        
+        } else {
+            resultsList.innerHTML = '';
+            var placeholder = document.getElementById('search-placeholder');
+            if (placeholder) {
+                placeholder.textContent = '没有找到匹配的内容。';
+                placeholder.style.display = 'block';
+            }
         }
     }
     
@@ -149,14 +169,16 @@ function initLocalSearch() {
     /*搜索按钮：打开搜索框*/
     function openSearchBox() {
         var searchBox = document.getElementById('overlay');  
-        if (searchBox.style.display === 'none' || searchBox.style.display === '') {  
-            searchBox.style.display = 'block';
+        if (!searchBox.classList.contains('show')) {  
+            searchBox.classList.add('show');
             var inputElement = document.getElementById('search-input');  
             if (inputElement) {
-                inputElement.focus();
+                setTimeout(function() {
+                    inputElement.focus();
+                }, 400);
             }
         } else {  
-            searchBox.style.display = 'none';
+            searchBox.classList.remove('show');
         }  
     }
     
@@ -177,14 +199,16 @@ function initLocalSearch() {
         var searchBox = document.getElementById('overlay');
         var inputElement = document.getElementById('search-input');  
         if (event.ctrlKey && event.key === 'f') {
-            if (searchBox.style.display === 'none' || searchBox.style.display === '') {               
-                searchBox.style.display = 'block';
+            if (!searchBox.classList.contains('show')) {               
+                searchBox.classList.add('show');
                 if (inputElement) {
-                    inputElement.focus();
+                    setTimeout(function() {
+                        inputElement.focus();
+                    }, 400);
                 }
                 event.preventDefault();
             } else {
-                searchBox.style.display = 'none';
+                searchBox.classList.remove('show');
                 event.preventDefault();
             }
         }  
@@ -196,7 +220,7 @@ function initLocalSearch() {
         overlay.addEventListener('click', function(event) {  
             var searchBox = document.getElementById('search-box');   
             if (searchBox && !searchBox.contains(event.target)) {
-                this.style.display = 'none';
+                this.classList.remove('show');
             }  
         });
     }
@@ -207,7 +231,7 @@ function initLocalSearch() {
         closeButton.addEventListener('click', function(event) {
             var searchBox = document.getElementById('overlay'); 
             if (searchBox) {
-                searchBox.style.display = 'none';
+                searchBox.classList.remove('show');
             }
         });
     }
@@ -217,7 +241,7 @@ function initLocalSearch() {
     document.addEventListener("keydown", function (event) {
         // 只在搜索框打开时处理键盘事件
         var searchBox = document.getElementById('overlay');
-        if (!searchBox || searchBox.style.display === 'none') {
+        if (!searchBox || !searchBox.classList.contains('show')) {
             return;
         }
         
