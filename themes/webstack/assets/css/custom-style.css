@@ -697,8 +697,9 @@ h4 + .tab-container {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
-    padding: 15px 15px 0 15px;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px 25px 15px 25px;
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 0 8px 32px rgba(0, 0, 0, .15);
@@ -719,24 +720,25 @@ h4 + .tab-container {
 /* 搜索图标 */
 #local-search-box .search-icon {
     top: 50%;
-    left: 0;
+    left: 5px;
     position: absolute;
     transform: translateY(-50%);
-    padding-left: 5px;
+    padding-left: 8px;
     color: #3f51b5;
+    font-size: 16px;
 }
 
 /* 搜索输入框 */
 #search-input {
     width: 100%;
-    padding-left: 25px;
-    padding: 12px 12px 12px 25px;
+    padding-left: 35px;
+    padding: 14px 15px 14px 35px;
     border: 2px solid transparent;
     outline: none;
     background: #f5f5f5;
     border-radius: 8px;
     transition: all 0.3s ease;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .io-black-mode #search-input {
@@ -757,66 +759,90 @@ h4 + .tab-container {
 /* 搜索结果列表 */
 #search-results {
     position: relative;
-    min-height: 50px;
-    max-height: 150px;
+    min-height: 60px;
+    max-height: 350px;
     list-style-type: none;
     padding: 0;
-    margin-right: -10px;
-    overflow: auto;
-    margin-top: 10px;
+    margin: 15px 0 10px 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #search-results span {
-    position: absolute;
-    top: 55%;
-    left: 48%;
-    transform: translate(-50%, -50%);
-    opacity: .5;
+    display: block;
+    text-align: center;
+    padding: 20px;
+    color: #999;
+    font-size: 14px;
 }
 
 #search-results li {
-    border-radius: 6px;
+    border-radius: 8px;
     transition: all 0.2s ease;
     font-size: 15px;
-    padding: 4px;
-    margin: 6px;
+    padding: 10px 12px;
+    margin: 8px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 600px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 #search-results li:hover {
-    transform: translateX(5px);
-    background-color: #bdbdbd94;
-    color: #ffffff;
+    transform: translateX(3px);
+    background-color: rgba(63, 81, 181, 0.08);
 }
 
 #search-results li a {
-    padding-left: 5px;
-    color: inherit;
+    padding-left: 8px;
+    color: #333;
     text-decoration: none;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.io-black-mode #search-results li a {
+    color: #e0e0e0;
 }
 
 #search-results li a strong {
-    background-color: #eee;
-    font-weight: 400;
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 500;
 }
 
 .io-black-mode #search-results li a strong {
-    background-color: #888888bf;
+    background-color: rgba(255, 193, 7, 0.3);
+    color: #ffc107;
+}
+
+#search-results li i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 #search-results li i img {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    object-fit: contain;
 }
 
 /* 搜索结果高亮 */
 #search-results .highlight {
-    background-color: #bdbdbd94;
-    color: #ffffff;
+    background-color: rgba(63, 81, 181, 0.15);
+}
+
+.io-black-mode #search-results .highlight {
+    background-color: rgba(144, 202, 249, 0.2);
 }
 
 /* 搜索结果滚动条 */
@@ -839,26 +865,30 @@ h4 + .tab-container {
 /* 关闭按钮 */
 #local-search-close {
     position: absolute;
-    top: -30px;
-    right: 10px;
-    font-size: 24px;
+    top: -40px;
+    right: 15px;
+    font-size: 28px;
     color: #fff;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    z-index: 1001;
 }
 
 #local-search-close:hover {
-    transform: scale(1.2);
+    transform: scale(1.15) rotate(90deg);
+    opacity: 1;
 }
 
 /* 响应式 - 大屏幕 */
 @media (min-width: 992px) {
     #local-search-box {
-        width: 600px;
+        width: 80%;
+        max-width: 900px;
     }
     
     #search-results {
-        max-height: 280px;
+        max-height: 400px;
     }
     
     #search-results::-webkit-scrollbar {
@@ -873,21 +903,60 @@ h4 + .tab-container {
 /* 响应式 - 中屏幕 */
 @media (min-width: 520px) and (max-width: 768px) {
     #local-search-box {
-        width: 350px;
+        width: 85%;
+        max-width: 500px;
     }
     
     #search-results {
-        max-height: 150px;
+        max-height: 250px;
     }
 }
 
 /* 响应式 - 平板 */
 @media (min-width: 768px) and (max-width: 992px) {
     #local-search-box {
-        width: 450px;
+        width: 80%;
+        max-width: 650px;
     }
     
     #search-results {
-        max-height: 200px;
+        max-height: 300px;
+    }
+}
+
+/* 响应式 - 小屏幕 */
+@media (max-width: 520px) {
+    #local-search-box {
+        width: 95%;
+        padding: 15px 15px 10px 15px;
+    }
+    
+    #search-input {
+        font-size: 14px;
+        padding: 12px 12px 12px 32px;
+    }
+    
+    #local-search-box .search-icon {
+        font-size: 14px;
+    }
+    
+    #search-results {
+        max-height: 250px;
+    }
+    
+    #search-results li {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+    
+    #search-results li i img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    #local-search-close {
+        top: -35px;
+        right: 10px;
+        font-size: 24px;
     }
 }
