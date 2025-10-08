@@ -1,6 +1,9 @@
 <!-- 本地搜索覆盖层 -->
 <div id="overlay" style="display:none">  
     <div id="search-box">
+        <a href="javascript:" id="close-button" title="点击周围任意地方也可以关闭。">
+            <i class="fas fa-times-circle"></i>
+        </a>
         <form onsubmit="return false;" role="search">
             <input type="text" id="search-input" placeholder="输入关键词、拼音或拼音首字母" autocomplete="off" aria-label="搜索输入框">
             <i class="search-icon fas fa-search" aria-hidden="true"></i> 
@@ -8,7 +11,7 @@
         <ul id="search-results" role="listbox" aria-label="搜索结果">
             <span>搜索本页内容</span>
         </ul>
-        <p class="search-hint">
+        <p style="font-size:11px; text-align: center; color: #999; margin-top: 10px;">
             键盘：<strong>↑</strong> 和 <strong>↓</strong> 选择，<strong>Enter</strong> 访问
         </p>
     </div>
