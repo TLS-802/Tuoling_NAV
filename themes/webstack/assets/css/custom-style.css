@@ -31,6 +31,46 @@ h4 {
     width: 90px
 }
 
+/* 搜索框按钮样式修复 - 确保按钮位置正确 */
+#search form,
+.super-search-fm {
+    position: relative;
+}
+
+#search button,
+.super-search-fm button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* 搜索模态框按钮样式修复 */
+.search-modal #search button,
+.search-modal .super-search-fm button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #0084ff;
+    border: 0;
+    width: 60px;
+    height: 50px;
+    margin: 0;
+    line-height: 50px;
+    border-radius: 0 3px 3px 0;
+}
+
+.search-modal #search button:hover,
+.search-modal .super-search-fm button:hover {
+    background: #006bde;
+    cursor: pointer;
+}
+
+.search-modal #search button i,
+.search-modal .super-search-fm button i {
+    color: #fff;
+    font-size: 18px;
+}
+
 /* 搜索框搜索图标颜色 */
 .header-big #search button i {
     color: #666;
