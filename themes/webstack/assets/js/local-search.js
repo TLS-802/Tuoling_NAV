@@ -1,301 +1,351 @@
-/* 本地搜索功能 - 移植自TLS-Toolbox
- * 支持搜索当前页面的所有网站卡片
+/**
+ * 本地搜索功能 - 重构版
+ * 搜索当前页面的所有网站卡片
  * 支持拼音搜索（如果启用）
  */
 
-var searchInput = document.getElementById("search-input");
-var searchResultsList = document.getElementById('search-results');
-var searchItems = null;
-
-// 定义一个防抖函数，避免频繁触发输入事件
-function debounceSearch(fn, delay) {
-    var timer = null;
-    return function() {
-        var context = this;
-        var args = arguments;
-        clearTimeout(timer);
-        timer = setTimeout(function() {
-            fn.apply(context, args);
-        }, delay);
-    }
-}
-
-// 根据pinyin-pro匹配的下标，获取匹配到的字
-function getMatchedWord(text, index) {
-    if (index == Number(index)) {
-        return text[index];
-    }   
-    if (Array.isArray(index)) {
-        var result = "";
-        for (var i = 0; i < index.length; i++) {
-            result += text.charAt(index[i]);
+(function() {
+    'use strict';
+    
+    // 配置项
+    const CONFIG = {
+        debounceDelay: 300,
+        minSearchLength: 1,
+        defaultLogo: '/images/logo.png',
+        selectors: {
+            overlay: '#local-search-overlay',
+            searchBox: '#local-search-box',
+            searchInput: '#search-input',
+            searchResults: '#search-results',
+            closeBtn: '#local-search-close',
+            searchBtn: 'a[rel="search"]',
+            cards: '.url-card'
         }
-        return result;
-    }  
-    return '';
-}
-
-// 封装搜索逻辑
-function performSearch() {
-    if (!searchInput || !searchResultsList) return;
+    };
     
-    var keyword = this.value;  
-    if (keyword.trim() === '') {
-        searchResultsList.innerHTML = '<span>搜索本页内容</span>';
-        return;  
-    }
+    // DOM 元素
+    let elements = {};
     
-    if (encodeURIComponent(keyword.trim()).length === 1) {
-        searchResultsList.innerHTML = '<span><strong>提示：</strong>至少输入2个字母、数字或1个汉字</span>';
-        return;  
-    }    
+    // 搜索状态
+    let currentIndex = -1;
+    let searchItems = [];
+    let debounceTimer = null;
     
-    // 获取所有网站卡片
-    var allCards = document.querySelectorAll('.url-card');
-    var results = [];
-    let regex = new RegExp(keyword, 'i'); // 'i' 标志表示不区分大小写     
-    
-    // 检查是否有拼音支持
-    var pyMatch = null;
-    if (typeof pinyinPro !== 'undefined') {
-        pyMatch = pinyinPro.match;
-    } 
-    
-    for (var i = 0; i < allCards.length; i++) {  
-        var cardLink = allCards[i].querySelector('a.card');
-        if (!cardLink) continue;
-        
-        // 获取卡片中的标题和描述
-        var titleElement = cardLink.querySelector('.overflowClip_1 strong');
-        if (!titleElement) continue;
-        
-        var title = titleElement.textContent.trim();
-        
-        // 获取描述文本
-        var descElement = cardLink.querySelector('.overflowClip_1 + p.overflowClip_1');
-        var description = descElement ? descElement.textContent.trim() : '';
-        
-        // 组合标题和描述进行搜索
-        var searchText = title + (description ? ' - ' + description : '');
-        var href = cardLink.getAttribute('href');
-        
-        // 获取图标 - 优先获取data-src，其次是src
-        var imgElement = cardLink.querySelector('.url-img img');
-        var imgSrc = '';
-        if (imgElement) {
-            imgSrc = imgElement.getAttribute('data-src') || imgElement.getAttribute('src') || '';
-        }
-        
-        // 常规匹配
-        let wordMatch = searchText.match(regex);
-        
-        // 拼音匹配
-        var pinyinMatchResult = null;
-        if (pyMatch && /^[a-zA-Z0-9]/.test(keyword)) { 
-            pinyinMatchResult = pyMatch(searchText, keyword, { continuous: true, precision: 'start'});
-        }
-        
-        if (wordMatch || pinyinMatchResult) {
-            results.push({
-                href: href,
-                text: searchText,
-                title: title,
-                imgSrc: imgSrc,
-                pyMatch: pinyinMatchResult,
-                wdMatch: wordMatch
-            });  
-        }
-    }  
-    
-    // 渲染搜索结果
-    searchResultsList.innerHTML = '';
-    if (results.length > 0) {
-        // 使用站点默认logo
-        var defaultLogo = '/images/logo.png';
-        
-        for (var j = 0; j < results.length; j++) {
-            // 高亮匹配的文字
-            var word = '';
-            if (results[j].wdMatch) {
-                word = results[j].wdMatch[0];
-            } else if (results[j].pyMatch) {
-                word = getMatchedWord(results[j].text, results[j].pyMatch);
-            }
-            
-            var highlight = word ? "<strong>" + word + "</strong>" : '';
-            var newtext = word ? results[j].text.replace(new RegExp(word, 'gi'), highlight) : results[j].text;
-            
-            // 创建结果列表项
-            var listItem = document.createElement('li');  
-            
-            // 添加图标
-            var newIcon = document.createElement('i');
-            var img = document.createElement('img');
-            img.src = results[j].imgSrc || defaultLogo;
-            img.onerror = function() { 
-                this.src = defaultLogo; 
-            };
-            img.alt = results[j].title || '';
-            newIcon.appendChild(img);
-            
-            // 添加链接
-            var newLink = document.createElement('a');  
-            newLink.href = results[j].href;  
-            newLink.innerHTML = newtext;                      
-            newLink.target = "_blank";
-            newLink.rel = "noopener noreferrer";
-            
-            // 组装列表项
-            listItem.appendChild(newIcon);
-            listItem.appendChild(newLink);  
-            searchResultsList.appendChild(listItem);  
-        }
-    } else {  
-        searchResultsList.innerHTML = '<span>没有找到匹配的内容。</span>';        
-    }
-    
-    // 更新搜索项引用
-    searchItems = searchResultsList.getElementsByTagName("li");
-}
-
-// 搜索按钮：打开搜索框
-function openLocalSearchBox() {
-    var searchBox = document.getElementById('local-search-overlay');  
-    if (!searchBox) return;
-    
-    if (searchBox.style.display === 'none' || !searchBox.style.display) {  
-        searchBox.style.display = 'block';
-        var inputElement = document.getElementById('search-input');
-        if (inputElement) {
-            inputElement.focus(); 
-        }
-    } else {  
-        searchBox.style.display = 'none';
-    }  
-}
-
-// 初始化搜索功能
-function initLocalSearch() {
-    // 绑定输入事件
-    if (searchInput) {
-        searchInput.addEventListener("input", debounceSearch(performSearch, 300));
-    }
-    
-    // 绑定右下角搜索按钮
-    var footerSearchBtn = document.querySelector('a[rel="search"]');
-    if (footerSearchBtn) {
-        // 移除原有的 data-toggle 和 data-target
-        footerSearchBtn.removeAttribute('data-toggle');
-        footerSearchBtn.removeAttribute('data-target');
-        // 添加新的点击事件
-        footerSearchBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            openLocalSearchBox();
+    /**
+     * 初始化 DOM 元素引用
+     */
+    function initElements() {
+        Object.keys(CONFIG.selectors).forEach(key => {
+            elements[key] = document.querySelector(CONFIG.selectors[key]);
         });
     }
     
-    // Ctrl+F：打开搜索框
-    document.addEventListener('keydown', function(event) { 
-        var searchBox = document.getElementById('local-search-overlay');
-        if (!searchBox) return;
+    /**
+     * 防抖函数
+     */
+    function debounce(func, delay) {
+        return function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => func.apply(this, arguments), delay);
+        };
+    }
+    
+    /**
+     * 根据拼音匹配索引获取匹配的字符
+     */
+    function getMatchedWord(text, index) {
+        if (typeof index === 'number') {
+            return text[index] || '';
+        }
+        if (Array.isArray(index)) {
+            return index.map(i => text.charAt(i)).join('');
+        }
+        return '';
+    }
+    
+    /**
+     * 创建搜索结果项
+     */
+    function createResultItem(result) {
+        const li = document.createElement('li');
+        li.className = 'result-item';
         
-        var inputElement = document.getElementById('search-input');  
-        if (event.ctrlKey && event.key === 'f') {
-            if (searchBox.style.display === 'none' || !searchBox.style.display) {               
-                searchBox.style.display = 'block';
-                if (inputElement) inputElement.focus();
-                event.preventDefault();
+        // 创建图标
+        const icon = document.createElement('div');
+        icon.className = 'result-icon';
+        const img = document.createElement('img');
+        img.src = result.imgSrc || CONFIG.defaultLogo;
+        img.alt = result.title || '';
+        img.onerror = function() { this.src = CONFIG.defaultLogo; };
+        icon.appendChild(img);
+        
+        // 创建链接
+        const link = document.createElement('a');
+        link.href = result.href;
+        link.className = 'result-link';
+        link.innerHTML = result.highlightedText;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        
+        li.appendChild(icon);
+        li.appendChild(link);
+        
+        return li;
+    }
+    
+    /**
+     * 渲染空状态
+     */
+    function renderEmptyState(message, icon = 'fa-search') {
+        elements.searchResults.innerHTML = `
+            <li class="search-tip">
+                <i class="fas ${icon}"></i>
+                <span>${message}</span>
+            </li>
+        `;
+    }
+    
+    /**
+     * 执行搜索
+     */
+    function performSearch() {
+        if (!elements.searchInput || !elements.searchResults) return;
+        
+        const keyword = elements.searchInput.value.trim();
+        
+        // 空值检查
+        if (keyword === '') {
+            renderEmptyState('开始搜索本页内容', 'fa-lightbulb');
+            return;
+        }
+        
+        // 最小长度检查
+        if (encodeURIComponent(keyword).length === 1) {
+            renderEmptyState('至少输入2个字母、数字或1个汉字', 'fa-info-circle');
+            return;
+        }
+        
+        // 获取所有卡片并搜索
+        const allCards = document.querySelectorAll(CONFIG.selectors.cards);
+        const results = [];
+        const regex = new RegExp(keyword, 'i');
+        
+        // 检查拼音支持
+        const pyMatch = typeof pinyinPro !== 'undefined' ? pinyinPro.match : null;
+        
+        // 遍历所有卡片
+        allCards.forEach(card => {
+            const cardLink = card.querySelector('a.card');
+            if (!cardLink) return;
+            
+            // 获取标题
+            const titleElement = cardLink.querySelector('.overflowClip_1 strong');
+            if (!titleElement) return;
+            const title = titleElement.textContent.trim();
+            
+            // 获取描述
+            const descElement = cardLink.querySelector('.overflowClip_1 + p.overflowClip_1');
+            const description = descElement ? descElement.textContent.trim() : '';
+            
+            // 组合搜索文本
+            const searchText = title + (description ? ' - ' + description : '');
+            const href = cardLink.getAttribute('href');
+            
+            // 获取图标
+            const imgElement = cardLink.querySelector('.url-img img');
+            const imgSrc = imgElement ? (imgElement.getAttribute('data-src') || imgElement.getAttribute('src') || '') : '';
+            
+            // 常规匹配
+            const wordMatch = searchText.match(regex);
+            
+            // 拼音匹配
+            let pinyinMatchResult = null;
+            if (pyMatch && /^[a-zA-Z0-9]/.test(keyword)) {
+                pinyinMatchResult = pyMatch(searchText, keyword, { 
+                    continuous: true, 
+                    precision: 'start' 
+                });
+            }
+            
+            // 如果匹配，添加到结果
+            if (wordMatch || pinyinMatchResult) {
+                // 高亮匹配文字
+                let matchedWord = '';
+                if (wordMatch) {
+                    matchedWord = wordMatch[0];
+                } else if (pinyinMatchResult) {
+                    matchedWord = getMatchedWord(searchText, pinyinMatchResult);
+                }
+                
+                const highlightedText = matchedWord 
+                    ? searchText.replace(new RegExp(matchedWord, 'gi'), `<strong>${matchedWord}</strong>`)
+                    : searchText;
+                
+                results.push({
+                    href,
+                    title,
+                    imgSrc,
+                    highlightedText
+                });
+            }
+        });
+        
+        // 渲染结果
+        if (results.length > 0) {
+            elements.searchResults.innerHTML = '';
+            results.forEach(result => {
+                const item = createResultItem(result);
+                elements.searchResults.appendChild(item);
+            });
+            searchItems = elements.searchResults.querySelectorAll('.result-item');
+            currentIndex = -1;
+        } else {
+            renderEmptyState('没有找到匹配的内容', 'fa-inbox');
+        }
+    }
+    
+    /**
+     * 打开搜索框
+     */
+    function openSearch() {
+        if (elements.overlay) {
+            elements.overlay.style.display = 'block';
+            if (elements.searchInput) {
+                elements.searchInput.focus();
+            }
+        }
+    }
+    
+    /**
+     * 关闭搜索框
+     */
+    function closeSearch() {
+        if (elements.overlay) {
+            elements.overlay.style.display = 'none';
+            if (elements.searchInput) {
+                elements.searchInput.value = '';
+                renderEmptyState('开始搜索本页内容', 'fa-lightbulb');
+            }
+            currentIndex = -1;
+        }
+    }
+    
+    /**
+     * 切换搜索框
+     */
+    function toggleSearch() {
+        if (elements.overlay.style.display === 'none' || !elements.overlay.style.display) {
+            openSearch();
+        } else {
+            closeSearch();
+        }
+    }
+    
+    /**
+     * 高亮选中项
+     */
+    function highlightItem(index) {
+        searchItems.forEach((item, i) => {
+            if (i === index) {
+                item.classList.add('highlight');
+                item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
             } else {
-                searchBox.style.display = 'none';
-                event.preventDefault();
-            }
-        }  
-    });
-    
-    // 点击空白处：关闭搜索框
-    var searchOverlay = document.getElementById('local-search-overlay');
-    if (searchOverlay) {
-        searchOverlay.addEventListener('click', function(event) {  
-            var searchBox = document.getElementById('local-search-box');   
-            if (searchBox && !searchBox.contains(event.target)) {
-                this.style.display = 'none';
-            }  
-        });
-    }
-    
-    // 搜索框关闭按钮
-    var closeButton = document.getElementById('local-search-close');
-    if (closeButton) {
-        closeButton.addEventListener('click', function(event) {
-            var searchBox = document.getElementById('local-search-overlay'); 
-            if (searchBox) {
-                searchBox.style.display = 'none';
+                item.classList.remove('highlight');
             }
         });
     }
     
-    // 键盘事件：结果列表选择
-    var index = -1;
-    document.addEventListener("keydown", function (event) {
+    /**
+     * 键盘导航
+     */
+    function handleKeyboard(e) {
         if (!searchItems || searchItems.length === 0) return;
         
-        // 上箭头
-        if (event.key === 'ArrowUp') {
-            if (index == -1 || index == 0) {
-                index = searchItems.length - 1;
-            } else {
-                index--;
-            }
-            for (var i = 0; i < searchItems.length; i++) {
-                if (i == index) {
-                    searchItems[i].classList.add("highlight");
-                    searchItems[i].scrollIntoView({ block: 'nearest' });
-                } else {
-                    searchItems[i].classList.remove("highlight");
+        switch(e.key) {
+            case 'ArrowUp':
+                e.preventDefault();
+                currentIndex = currentIndex <= 0 ? searchItems.length - 1 : currentIndex - 1;
+                highlightItem(currentIndex);
+                break;
+                
+            case 'ArrowDown':
+                e.preventDefault();
+                currentIndex = currentIndex >= searchItems.length - 1 ? 0 : currentIndex + 1;
+                highlightItem(currentIndex);
+                break;
+                
+            case 'Enter':
+                if (currentIndex !== -1 && searchItems[currentIndex]) {
+                    const link = searchItems[currentIndex].querySelector('a');
+                    if (link) link.click();
                 }
-            }
-            event.preventDefault();
+                break;
+                
+            case 'Escape':
+                closeSearch();
+                break;
+        }
+    }
+    
+    /**
+     * 绑定事件
+     */
+    function bindEvents() {
+        // 搜索输入事件
+        if (elements.searchInput) {
+            elements.searchInput.addEventListener('input', debounce(performSearch, CONFIG.debounceDelay));
         }
         
-        // 下箭头
-        if (event.key === 'ArrowDown') {
-            if (index == -1 || index == searchItems.length - 1) {
-                index = 0;
-            } else {
-                index++;
-            }
-            for (var i = 0; i < searchItems.length; i++) {
-                if (i == index) {
-                    searchItems[i].classList.add("highlight");
-                    searchItems[i].scrollIntoView({ block: 'nearest' });
-                } else {
-                    searchItems[i].classList.remove("highlight");
+        // 搜索按钮点击
+        if (elements.searchBtn) {
+            elements.searchBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleSearch();
+            });
+        }
+        
+        // 关闭按钮
+        if (elements.closeBtn) {
+            elements.closeBtn.addEventListener('click', closeSearch);
+        }
+        
+        // 点击遮罩关闭
+        if (elements.overlay) {
+            elements.overlay.addEventListener('click', function(e) {
+                if (e.target === elements.overlay) {
+                    closeSearch();
                 }
-            }
-            event.preventDefault();
+            });
         }
         
-        // 回车键
-        if (event.key === 'Enter') {
-            if (index != -1 && searchItems[index]) {
-                var link = searchItems[index].getElementsByTagName("a")[0];
-                if (link) link.click();
+        // 键盘事件
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+F 打开搜索
+            if (e.ctrlKey && e.key === 'f') {
+                e.preventDefault();
+                toggleSearch();
             }
-        }
-        
-        // ESC键关闭搜索框
-        if (event.key === 'Escape') {
-            var searchBox = document.getElementById('local-search-overlay');
-            if (searchBox) {
-                searchBox.style.display = 'none';
+            
+            // 搜索框打开时的键盘导航
+            if (elements.overlay && elements.overlay.style.display === 'block') {
+                handleKeyboard(e);
             }
-        }
-    });
-}
-
-// 页面加载完成后初始化
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLocalSearch);
-} else {
-    initLocalSearch();
-}
+        });
+    }
+    
+    /**
+     * 初始化
+     */
+    function init() {
+        initElements();
+        bindEvents();
+        console.log('[本地搜索] 初始化完成');
+    }
+    
+    // 页面加载完成后初始化
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();

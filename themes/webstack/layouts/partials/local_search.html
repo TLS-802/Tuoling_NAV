@@ -1,18 +1,42 @@
-<!-- 本地搜索覆盖层 - 基于TLS-Toolbox -->
+<!-- 本地搜索模态框 - 重构版 -->
 <div id="local-search-overlay" style="display:none">  
     <div id="local-search-box">
-        <a href="javascript:" id="local-search-close" title="点击周围任意地方也可以关闭" aria-label="关闭搜索">
+        <!-- 关闭按钮 -->
+        <button type="button" id="local-search-close" class="close-btn" aria-label="关闭搜索">
             <i class="fas fa-times-circle"></i>
-        </a>
-        <form onsubmit="return false;" role="search">
-            <input type="text" id="search-input" placeholder="输入关键词{{ if .Site.Params.pinyin.enable }}、拼音或拼音首字母{{ end }}搜索本站内容..." autocomplete="off" aria-label="搜索输入框">
-            <i class="search-icon fas fa-search" aria-hidden="true"></i> 
-        </form>
-        <ul id="search-results" role="listbox" aria-label="搜索结果">
-            <span>搜索本页内容</span>
-        </ul>
+        </button>
+        
+        <!-- 搜索表单 -->
+        <div class="search-wrapper">
+            <form onsubmit="return false;" role="search" autocomplete="off">
+                <div class="search-input-wrapper">
+                    <i class="search-icon fas fa-search" aria-hidden="true"></i>
+                    <input type="text" 
+                           id="search-input" 
+                           class="search-input"
+                           placeholder="输入关键词{{ if .Site.Params.pinyin.enable }}、拼音或拼音首字母{{ end }}搜索本站内容..." 
+                           autocomplete="off" 
+                           aria-label="搜索输入框">
+                </div>
+            </form>
+        </div>
+        
+        <!-- 搜索结果 -->
+        <div class="search-results-wrapper">
+            <ul id="search-results" role="listbox" aria-label="搜索结果">
+                <li class="search-tip">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>开始搜索本页内容</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- 操作提示 -->
         <div class="search-tips">
-            <small>键盘：<strong>↑</strong> 和 <strong>↓</strong> 选择，<strong>Enter</strong> 访问，<strong>ESC</strong> 关闭</small>
+            <div class="tip-item">
+                <i class="fas fa-keyboard"></i>
+                <span>使用 <strong>↑</strong> <strong>↓</strong> 选择，<strong>Enter</strong> 访问，<strong>ESC</strong> 关闭</span>
+            </div>
         </div>
     </div>
 </div>
