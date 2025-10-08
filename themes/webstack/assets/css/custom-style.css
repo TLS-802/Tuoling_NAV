@@ -707,8 +707,10 @@ h4 + .tab-container {
 
 /* 移除任何可能的伪元素 */
 #local-search-box::before,
-#local-search-box::after {
-    content: none !important;
+#local-search-box::after,
+#local-search-overlay::before,
+#local-search-overlay::after {
+    content: "" !important;
     display: none !important;
 }
 
@@ -716,6 +718,17 @@ h4 + .tab-container {
 .io-black-mode #local-search-box {
     background-color: #212332;
     box-shadow: 0 8px 32px rgba(0, 0, 0, .6);
+}
+
+/* 搜索内容容器 */
+.search-content {
+    width: 100%;
+}
+
+.search-content::before,
+.search-content::after {
+    content: "" !important;
+    display: none !important;
 }
 
 /* 搜索框表单 */
@@ -728,7 +741,7 @@ h4 + .tab-container {
 /* 移除表单伪元素 */
 #local-search-box form::before,
 #local-search-box form::after {
-    content: none !important;
+    content: "" !important;
     display: none !important;
 }
 
