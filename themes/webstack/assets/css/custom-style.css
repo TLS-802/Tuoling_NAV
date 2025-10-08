@@ -822,6 +822,7 @@ h4 + .tab-container {
     margin: 20px 0 15px 0;
     overflow-y: auto;
     overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 #search-results > span {
@@ -844,13 +845,12 @@ h4 + .tab-container {
     font-size: 15px;
     padding: 12px 15px;
     margin: 0 0 8px 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #search-results li:last-child {
@@ -869,10 +869,11 @@ h4 + .tab-container {
     color: #333;
     text-decoration: none;
     flex: 1;
+    line-height: 1.5;
+    display: block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    line-height: 1.5;
 }
 
 .io-black-mode #search-results li a {
@@ -1071,6 +1072,8 @@ h4 + .tab-container {
         font-size: 14px;
         padding: 10px 12px;
         gap: 8px;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     #search-results li i img {
