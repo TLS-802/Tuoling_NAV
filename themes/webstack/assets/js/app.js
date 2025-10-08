@@ -702,13 +702,13 @@
         $('.s-type-list.big label').removeClass('active');
         $(this).addClass('active');
         window.localStorage.setItem("searchlistmenu", $(this).data("id"));
-        var parent = $(this).parents(".s-search");
+        var parent = $(this).closest("#search, .search-container");
         parent.find('.search-group').removeClass("s-current");
         parent.find('#'+$(this).attr("for")).parents(".search-group").addClass("s-current"); 
         toTarget($(this).parents(".s-type-list"),false,false);
     });
     $('.hide-type-list .search-group input').on('click', function() {
-        var parent = $(this).parents(".s-search");
+        var parent = $(this).closest("#search, .search-container");
         window.localStorage.setItem("searchlist", $(this).attr("id").replace("m_",""));
         parent.children(".super-search-fm").attr("action",$(this).val());
         parent.find(".search-key").attr("placeholder",$(this).data("placeholder"));

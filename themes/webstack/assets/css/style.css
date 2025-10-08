@@ -2090,12 +2090,14 @@ footer.main-footer {
 /*--------------------------------------------------------------
 ## search style
 --------------------------------------------------------------*/
-#search {
+#search,
+.search-container {
     max-width: 800px;
     position: relative
 }
 
-#search form {
+#search form,
+.search-container form {
     cursor: text;
     position: relative
 }
@@ -2111,7 +2113,8 @@ footer.main-footer {
     transition: .3s
 }
 
-#search button {
+#search button,
+.search-container button {
     position: absolute;
     top: 0;
     right: 0;
@@ -2124,17 +2127,20 @@ footer.main-footer {
     border-radius: 3px
 }
 
-#search button:hover {
+#search button:hover,
+.search-container button:hover {
     background: #006bde;
     cursor: pointer
 }
 
-#search button i {
+#search button i,
+.search-container button i {
     color: #fff;
     font-size: 18px
 }
 
-#search .search-select {
+#search .search-select,
+.search-container .search-select {
     height: 50px;
     cursor: pointer;
     border: none;
@@ -2142,7 +2148,8 @@ footer.main-footer {
     transition: .3s
 }
 
-#search .input-group-prepend:not(.d-none) + .search-key {
+#search .input-group-prepend:not(.d-none) + .search-key,
+.search-container .input-group-prepend:not(.d-none) + .search-key {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0
 }
@@ -2351,7 +2358,8 @@ footer.main-footer {
 }
 
 @media screen and (max-width: 767.98px) {
-    #search {
+    #search,
+    .search-container {
         margin: 25px auto 15px
     }
 
@@ -2843,7 +2851,8 @@ footer.main-footer {
     backdrop-filter: blur(5px);
 }
 
-.header-big #search button {
+.header-big #search button,
+.header-big .search-container button {
     position: absolute;
     top: 0;
     right: 0;
@@ -2857,7 +2866,9 @@ footer.main-footer {
 }
 
 .header-big #search button:active,
-.header-big #search button:focus {
+.header-big #search button:focus,
+.header-big .search-container button:active,
+.header-big .search-container button:focus {
     box-shadow: none;
     outline: none;
     border: 0 !important
@@ -5513,7 +5524,8 @@ input.nav-link[readonly] {
     box-shadow: 0 9px 20px rgba(0, 0, 0, .3)
 }
 
-.io-black-mode #search .search-select {
+.io-black-mode #search .search-select,
+.io-black-mode .search-container .search-select {
     background-color: #2c2e2f;
     border-color: #2c2e2f
 }
