@@ -703,12 +703,13 @@ h4 + .tab-container {
     transform: translate(-50%, -50%);
     width: 95%;
     max-width: 1000px;
-    padding: 30px 40px 25px 40px; /* 添加左右内边距使内容居中 */
+    padding: 30px 40px 25px 40px;
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 0 8px 32px rgba(0, 0, 0, .15);
-    overflow: hidden; /* 隐藏任何越界元素 */
+    overflow: visible;
     box-sizing: border-box;
+    display: block;
 }
 
 /* 移除任何可能的伪元素 */
@@ -814,11 +815,11 @@ h4 + .tab-container {
 
 /* 搜索结果列表 */
 #search-results {
-    width: 100%;
+    width: 100% !important;
     min-height: 100px;
     max-height: 350px;
     list-style-type: none;
-    padding: 0;
+    padding: 0 !important;
     margin: 20px 0 15px 0;
     overflow-y: auto;
     overflow-x: hidden;
@@ -846,11 +847,12 @@ h4 + .tab-container {
     padding: 12px 15px;
     margin: 0 0 8px 0;
     cursor: pointer;
-    display: flex;
+    display: flex !important;
     align-items: center;
     gap: 10px;
-    width: 100%;
+    width: 100% !important;
     box-sizing: border-box;
+    list-style: none !important;
 }
 
 #search-results li:last-child {
@@ -868,12 +870,13 @@ h4 + .tab-container {
 #search-results li a {
     color: #333;
     text-decoration: none;
-    flex: 1;
+    flex: 1 1 auto;
     line-height: 1.5;
-    display: block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .io-black-mode #search-results li a {
@@ -898,6 +901,9 @@ h4 + .tab-container {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    flex-grow: 0;
+    width: 24px;
+    height: 24px;
 }
 
 #search-results li i img {
