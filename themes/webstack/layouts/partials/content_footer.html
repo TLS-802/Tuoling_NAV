@@ -9,6 +9,11 @@
             rel="search" one-link-mark="yes" title="搜索">
             <i class="fas fa-search"></i>
         </a>
+        <!-- 右下角联系我们 -->
+        <a href="#{{ md5 "联系我们" }}" class="btn rounded-circle kefu m-1 smooth"
+            data-toggle="tooltip" data-placement="left" title="联系我们">
+            <i class="fas fa-comment-dots"></i>
+        </a>
         <!-- 右下角夜/日间模式切换 -->
         <a href="javascript:" onclick="switchNightMode()"
             class="btn rounded-circle switch-dark-mode m-1" id="yejian" data-toggle="tooltip" data-placement="left"
@@ -19,7 +24,7 @@
     <div class="footer-inner">
 
         <div class="footer-text">
-            本站收录内容源自互联网，不对其网站内容或交易负责。如有内容侵犯权益，请<a href="{{ .Site.Params.Info.emailHref }}" target="_blank" title="{{ .Site.Params.Info.email }}" style="color: #007bff;">联系站长</a>删除相关内容！
+            本站收录内容源自互联网，不对其网站内容或交易负责。如有内容侵犯权益，请<a href="#{{ md5 "联系我们" }}" class="smooth" title="联系我们" style="color: #007bff;">联系站长</a>删除相关内容！
             <br /><br />
             Copyright <i class="far fa-copyright"><script>document.write(new Date().getFullYear());</script> 驼铃电商工具箱 丨
             <span id="sitetime">正在载入网站运行时间...</span>
