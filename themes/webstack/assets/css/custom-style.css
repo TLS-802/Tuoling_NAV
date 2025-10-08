@@ -702,7 +702,7 @@ h4 + .tab-container {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    max-width: 90%;
+    max-width: 1000px;
     padding: 30px 40px 25px 40px;
     border-radius: 16px;
     background-color: #fff;
@@ -710,6 +710,11 @@ h4 + .tab-container {
     overflow: hidden; /* 防止内容超出 */
     box-sizing: border-box;
     display: block;
+}
+
+/* 确保所有子元素继承 box-sizing */
+#local-search-box * {
+    box-sizing: border-box;
 }
 
 /* 移除任何可能的伪元素 */
@@ -750,11 +755,12 @@ h4 + .tab-container {
 /* 搜索框表单 */
 #local-search-box form {
     position: relative;
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    border: none !important;
 }
 
 /* 移除表单伪元素 */
@@ -766,18 +772,18 @@ h4 + .tab-container {
 
 /* 搜索输入框 */
 #search-input {
-    width: 100%;
-    max-width: 100%;
-    padding: 14px 15px;
-    border: 2px solid #e0e0e0;
-    outline: none;
-    background: #fff;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    font-size: 15px;
-    box-sizing: border-box;
-    margin: 0;
-    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 14px 15px !important;
+    border: 2px solid #e0e0e0 !important;
+    outline: none !important;
+    background: #fff !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+    font-size: 15px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    display: block !important;
 }
 
 #search-input::placeholder {
@@ -785,9 +791,9 @@ h4 + .tab-container {
 }
 
 .io-black-mode #search-input {
-    background: #2a2d3e;
-    border-color: #37474f;
-    color: #e8eaf6;
+    background: #2a2d3e !important;
+    border-color: #37474f !important;
+    color: #e8eaf6 !important;
 }
 
 .io-black-mode #search-input::placeholder {
@@ -806,17 +812,17 @@ h4 + .tab-container {
 
 /* 搜索结果列表 */
 #search-results {
-    width: 100%;
-    max-width: 100%;
-    min-height: 100px;
-    max-height: 350px;
-    list-style-type: none;
-    padding: 0;
-    margin: 20px 0 15px 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    box-sizing: border-box;
-    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 100px !important;
+    max-height: 350px !important;
+    list-style-type: none !important;
+    padding: 0 !important;
+    margin: 20px 0 15px 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+    display: block !important;
 }
 
 #search-results > span {
@@ -962,8 +968,8 @@ h4 + .tab-container {
 /* 响应式 - 大屏幕 */
 @media (min-width: 992px) {
     #local-search-box {
-        width: 90%;
-        max-width: 90%;
+        width: 85%;
+        max-width: 1200px;
         padding: 35px 50px 30px 50px; /* 大屏幕增加左右内边距 */
     }
     
@@ -983,8 +989,8 @@ h4 + .tab-container {
 /* 响应式 - 中屏幕 */
 @media (min-width: 520px) and (max-width: 768px) {
     #local-search-box {
-        width: 90%;
-        max-width: 90%;
+        width: 88%;
+        max-width: 650px;
         padding: 28px 30px 23px 30px;
     }
     
@@ -996,8 +1002,8 @@ h4 + .tab-container {
 /* 响应式 - 平板 */
 @media (min-width: 768px) and (max-width: 992px) {
     #local-search-box {
-        width: 90%;
-        max-width: 90%;
+        width: 80%;
+        max-width: 750px;
         padding: 32px 35px 27px 35px;
     }
     
@@ -1059,7 +1065,7 @@ h4 + .tab-container {
 /* 响应式 - 小屏幕 */
 @media (max-width: 520px) {
     #local-search-box {
-        width: 90%;
+        width: 94%;
         padding: 25px 20px 20px 20px;
     }
     
