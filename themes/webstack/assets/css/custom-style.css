@@ -708,6 +708,13 @@ h4 + .tab-container {
     align-items: center;
 }
 
+/* 移除任何可能的伪元素 */
+#local-search-box::before,
+#local-search-box::after {
+    content: none !important;
+    display: none !important;
+}
+
 /* 暗黑模式下的搜索框 */
 .io-black-mode #local-search-box {
     background-color: #212332;
@@ -718,8 +725,14 @@ h4 + .tab-container {
 #local-search-box form {
     position: relative;
     width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
+    margin: 0;
+}
+
+/* 移除表单伪元素 */
+#local-search-box form::before,
+#local-search-box form::after {
+    content: none !important;
+    display: none !important;
 }
 
 /* 搜索图标 */
@@ -777,7 +790,6 @@ h4 + .tab-container {
 /* 搜索结果列表 */
 #search-results {
     width: 100%;
-    max-width: 600px;
     min-height: 100px;
     max-height: 350px;
     list-style-type: none;
@@ -916,14 +928,9 @@ h4 + .tab-container {
 /* 响应式 - 大屏幕 */
 @media (min-width: 992px) {
     #local-search-box {
-        width: 70%;
-        max-width: 800px;
-        padding: 30px 40px 25px 40px;
-    }
-    
-    #local-search-box form,
-    #search-results {
+        width: 60%;
         max-width: 700px;
+        padding: 30px 40px 25px 40px;
     }
     
     #search-results {
@@ -943,7 +950,8 @@ h4 + .tab-container {
 @media (min-width: 520px) and (max-width: 768px) {
     #local-search-box {
         width: 85%;
-        max-width: 500px;
+        max-width: 550px;
+        padding: 25px 30px 20px 30px;
     }
     
     #search-results {
@@ -954,8 +962,9 @@ h4 + .tab-container {
 /* 响应式 - 平板 */
 @media (min-width: 768px) and (max-width: 992px) {
     #local-search-box {
-        width: 80%;
-        max-width: 650px;
+        width: 70%;
+        max-width: 600px;
+        padding: 28px 35px 22px 35px;
     }
     
     #search-results {
@@ -1014,13 +1023,8 @@ h4 + .tab-container {
 /* 响应式 - 小屏幕 */
 @media (max-width: 520px) {
     #local-search-box {
-        width: 95%;
-        padding: 20px 15px 15px 15px;
-    }
-    
-    #local-search-box form,
-    #search-results {
-        max-width: 100%;
+        width: 92%;
+        padding: 20px 20px 15px 20px;
     }
     
     #search-input {
