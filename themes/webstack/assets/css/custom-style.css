@@ -698,13 +698,14 @@ h4 + .tab-container {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 900px;
-    padding: 30px 0 25px 0; /* 使输入框与模态框同宽 */
+    width: 95%;
+    max-width: 1000px;
+    padding: 30px 40px 25px 40px; /* 添加左右内边距使内容居中 */
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 0 8px 32px rgba(0, 0, 0, .15);
     overflow: hidden; /* 隐藏任何越界元素 */
+    box-sizing: border-box;
 }
 
 /* 移除任何可能的伪元素 */
@@ -949,13 +950,13 @@ h4 + .tab-container {
 /* 响应式 - 大屏幕 */
 @media (min-width: 992px) {
     #local-search-box {
-        width: 75%;
-        max-width: 1000px;
-        padding: 35px 0 30px 0; /* 保持输入框与模态框同宽 */
+        width: 85%;
+        max-width: 1200px;
+        padding: 35px 50px 30px 50px; /* 大屏幕增加左右内边距 */
     }
     
     #search-results {
-        max-height: 400px;
+        max-height: 450px;
     }
     
     #search-results::-webkit-scrollbar {
@@ -972,7 +973,7 @@ h4 + .tab-container {
     #local-search-box {
         width: 88%;
         max-width: 650px;
-        padding: 28px 0 23px 0;
+        padding: 28px 30px 23px 30px;
     }
     
     #search-results {
@@ -985,7 +986,7 @@ h4 + .tab-container {
     #local-search-box {
         width: 80%;
         max-width: 750px;
-        padding: 32px 0 27px 0;
+        padding: 32px 35px 27px 35px;
     }
     
     #search-results {
@@ -1045,7 +1046,7 @@ h4 + .tab-container {
 @media (max-width: 520px) {
     #local-search-box {
         width: 94%;
-        padding: 25px 0 20px 0;
+        padding: 25px 20px 20px 20px;
     }
     
     #search-input {
