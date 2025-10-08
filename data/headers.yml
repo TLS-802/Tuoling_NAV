@@ -24,8 +24,3 @@
     - name: 关于站长
       icon: fas fa-caret-right
       link: https://www.itbob.cn/about/
-
-- item: 免责声明
-  popup: true
-  icon: fas fa-user-secret
-  popupID: show-disclaimer
