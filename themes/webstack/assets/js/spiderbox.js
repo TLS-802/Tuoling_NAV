@@ -1,3 +1,22 @@
+/* 控制台输出 */
+function makeMulti(string) {
+    let l = String(string)
+    l = l.substring(l.indexOf("/*") + 3, l.lastIndexOf("*/"))
+    return "%c " + l
+};
+const string = function () {
+    /*
+      ______            __    _           
+     /_  __/_  ______  / /   (_)___  ____ 
+      / / / / / / __ \/ /   / / __ \/ __ \
+     / / / /_/ / /_/ / /___/ / / / / /_/ /
+    /_/  \__,_/\____/_____/_/_/ /_/\__, / 
+                                  /____/  
+    */
+};
+console.log(makeMulti(string), "color: #0084ff");
+console.log("\n %c 驼铃电商工具箱 %c dy.202802.xyz \n", "color: #ffffff; background: #0084ff; padding:5px 0;", "background: #fadfa3; padding:5px 0;");
+
 /* 弹窗一：say hello baby */
 // $(document).ready(function () {
 //     // 检查是否是 Chromium 内核且版本小于 100
@@ -110,7 +129,7 @@ showDisclaimerElement.addEventListener("click", function () {
         html: `
         <div class="custom-swal-container">
             <h3>免责声明</h3>
-            <p style="text-align: left;">欢迎使用我们的导航站 [SpiderBox 虫盒]！请在使用本站点之前仔细阅读以下免责声明，要访问和使用本站点，您必须接受以下条款和条件！如果您不同意这些条款和条件，请勿使用本站点！</p>
+            <p style="text-align: left;">欢迎使用我们的导航站 [驼铃电商工具箱]！请在使用本站点之前仔细阅读以下免责声明，要访问和使用本站点，您必须接受以下条款和条件！如果您不同意这些条款和条件，请勿使用本站点！</p>
             <ol class="custom-swal-ol">
                 <li>
                     <span>信息准确性</span>
@@ -229,7 +248,7 @@ function getCookie(name) {
 
 /* 夜间(日间)模式记忆判断 */
 (function () {
-    let nightCookie = getCookie('_SPIDERBOX_NIGHT_') === '1';
+    let nightCookie = getCookie('_TUOLING_NIGHT_') === '1';
     if (nightCookie) {
         document.body.classList.remove('io-grey-mode');
         document.body.classList.add('io-black-mode');
@@ -243,7 +262,7 @@ function getCookie(name) {
 /* 夜间(日间)模式切换 */
 // $("#search-bg").css("background-image", "url({{ with $.Site.Params.cdnURL }}{{ . }}{{ end }}{{ $.Site.Params.images.searchImageL }})");   //默认浅色背景
 function switchNightMode() {
-    const cookieName = "_SPIDERBOX_NIGHT_"
+    const cookieName = "_TUOLING_NIGHT_"
     const date = new Date();
     date.setFullYear(date.getFullYear() + 1);  // 设置为 1 年后过期
 
