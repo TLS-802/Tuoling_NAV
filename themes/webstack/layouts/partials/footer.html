@@ -49,25 +49,28 @@ var theme = {
         setTimeout(function () {
             var hash = window.location.hash;
             if (hash) {
-                // 优先检查是否为标签页
-                var $tabPane = $(hash);
-                if ($tabPane.length && $tabPane.hasClass('tab-pane')) {
-                    // 激活标签
-                    if (window.activateTabFromHash) {
-                        window.activateTabFromHash(hash);
+                console.log('[Init] 页面加载，检测hash:', hash);
+                
+                // 优先检查是否为标签（TLS-Toolbox逻辑）
+                if (hash.indexOf('-tab-') > -1) {
+                    var $tabItem = $(hash);
+                    if ($tabItem.length && $tabItem.hasClass('tab-item')) {
+                        console.log('[Init] 找到标签，激活中...');
+                        $tabItem.click();
+                        
+                        // 滚动到标签位置
+                        setTimeout(function() {
+                            var pos = $tabItem.offset().top - 100;
+                            $("html, body").animate({
+                                scrollTop: pos
+                            }, 200);
+                        }, 100);
+                        return;
                     }
-                    // 滚动到标签容器
-                    var $tabsContainer = $('a[href="' + hash + '"][data-toggle="tab"]').closest('.nav-tabs');
-                    if ($tabsContainer.length) {
-                        $("html, body").animate({
-                            scrollTop: $tabsContainer.offset().top - 90
-                        }, {
-                            duration: 500,
-                            easing: "swing"
-                        });
-                    }
-                } else if ($('a.smooth[href="' + hash + '"]')[0]) {
-                    // 普通smooth链接
+                }
+                
+                // 否则尝试普通smooth链接
+                if ($('a.smooth[href="' + hash + '"]')[0]) {
                     $('a.smooth[href="' + hash + '"]').click();
                 } else if ($(hash).length) {
                     // 普通锚点滚动
@@ -79,7 +82,7 @@ var theme = {
                     });
                 }
             }
-        }, 400);
+        }, 300);
         $(document).on('click','a.smooth',function(ev) {
             if($('#sidebar').hasClass('show') && !$(this).hasClass('change-href')){
                 $('#sidebar').modal('toggle');
@@ -87,33 +90,28 @@ var theme = {
             
             var href = $(this).attr("href");
             if(href && href.substr(0, 1) == "#"){
-                var $target = $(href);
-                
-                // 检查目标是否为标签面板
-                if ($target.length && $target.hasClass('tab-pane')) {
-                    // 先激活标签
-                    var $tabLink = $('a[href="' + href + '"][data-toggle="tab"]');
-                    if ($tabLink.length) {
-                        $tabLink.tab('show');
-                        
-                        // 延迟滚动，确保标签切换完成
-                        setTimeout(function() {
-                            var $tabsContainer = $tabLink.closest('.nav-tabs');
-                            if ($tabsContainer.length) {
-                                $("html, body").animate({
-                                    scrollTop: $tabsContainer.offset().top - 90
-                                }, {
-                                    duration: 500,
-                                    easing: "swing"
-                                });
-                            }
-                        }, 100);
-                        return false; // 阻止默认行为
+                // 检查是否为二级菜单标签（移植自TLS-Toolbox逻辑）
+                if (href.indexOf('-tab-') > -1) {
+                    console.log('[Smooth] 检测到标签链接:', href);
+                    
+                    // 立即激活对应标签
+                    var $tabItem = $(href);
+                    if ($tabItem.length && $tabItem.hasClass('tab-item')) {
+                        $tabItem.click();
+                        console.log('[Smooth] 标签已激活');
                     }
+                    
+                    // 滚动到标签位置
+                    var pos = $(href).offset().top - 100;
+                    $("html, body").animate({
+                        scrollTop: pos
+                    }, 200); // 减少动画时间，提高响应速度
+                    
+                    return false;
                 } else {
                     // 普通锚点滚动
                     $("html, body").animate({
-                        scrollTop: $target.offset().top - 90
+                        scrollTop: $(href).offset().top - 90
                     }, {
                         duration: 500,
                         easing: "swing"
@@ -125,8 +123,8 @@ var theme = {
                 $('#search-text').focus();
             }
             
-            // 只有当目标不是标签面板时，才执行原有的menu逻辑
-            if(!$(this).hasClass('change-href') && !($target.length && $target.hasClass('tab-pane'))){
+            // 只有当目标不是标签时，才执行原有的menu逻辑
+            if(!$(this).hasClass('change-href') && href.indexOf('-tab-') === -1){
                 var menu =  $("a"+$(this).attr("href"));
                 if(menu.length){
                     menu.click();

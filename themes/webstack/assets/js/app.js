@@ -1182,65 +1182,75 @@ function ioConfirm(message, btnCallBack) {
  */
 function ChromBookmarkConverter(){this.bookmarks={folders:[]},this.stripUnneededTags=function(a){return a=a.replace(/<p>/gi,""),a=a.replace(/<P>/gi,""),a=a.replace(/<dt>/gi,""),a=a.replace(/<DT>/gi,"")},this.processChromeBookmarksContent=function(a){var c,b=this;a=this.stripUnneededTags(a),c=$.parseHTML(a),$.each(c,function(a,c){if("DL"==c.tagName){var d={type:"folder",title:"未命名",items:[]};b.bookmarks.folders.push(d),b.processDL(c,1,d)}})},this.processDL=function(a,b,c){var d=this,e=0,f={},g={type:"folder",title:"",add_date:"",last_modified:"",items:[]},h={},i=$(a),j=!1;$.each(i.children(),function(a,i){var k,l,m,n,o,p,q,r,s;e+=1,k=b+"."+e,1==j&&i.tagName.toLowerCase()!="DL".toLowerCase()&&(j=!1,console.log("h3",f),g.items.push(f)),i.tagName.toLowerCase()=="DL".toLowerCase()&&(g={type:"folder",title:f.title,add_date:f.add_date,last_modified:f.last_modified,items:[]},1==j&&(j=!1),d.bookmarks.folders.push(g),d.processDL(i,k,g)),i.tagName.toLowerCase()=="H3".toLowerCase()&&(l=$(i),m=l.text()?l.text():"未命名",n=l.attr("add_date"),o=l.attr("last_modified"),f={type:"header",title:m,add_date:n,last_modified:o},j=!0),"a"==i.tagName.toLowerCase()&&isURL($(i).attr("href"))&&""!=$(i).text()&&(p=$(i),q=p.text(),r=p.attr("href"),s=p.attr("add_date"),p.attr("icon"),h={type:"link",title:q,href:r,add_date:s},c.items.push(h))})}}
 
-// 标签式二级菜单自动激活功能
+// 标签式二级菜单交互（移植自TLS-Toolbox，简洁高效）
 (function($){
-    // 处理标签激活的函数
-    function activateTabFromHash(hash) {
-        if (!hash) {
-            hash = window.location.hash;
+    $(document).ready(function() {
+        // 缓存常用DOM元素，提高性能
+        var $tabContainers = $('.tab-container');
+        
+        // 为每个tab-menu下的tab-item添加点击事件
+        $('.tab-menu .tab-item').click(function(e) {
+            // 阻止事件冒泡，提高响应速度
+            e.stopPropagation();
+            
+            // 获取当前点击的标签索引
+            var tabId = $(this).data('tab');
+            
+            console.log('[Tab] 点击标签:', $(this).text(), 'data-tab:', tabId);
+            
+            // 移除同级标签的active类
+            $(this).siblings().removeClass('active');
+            
+            // 为当前点击的标签添加active类
+            $(this).addClass('active');
+            
+            // 获取标签容器
+            var tabContainer = $(this).closest('.tab-container');
+            
+            // 直接操作需要隐藏和显示的元素，减少DOM查询
+            tabContainer.find('.tab-content.active').removeClass('active');
+            tabContainer.find('.tab-content[data-tab="' + tabId + '"]').addClass('active');
+            
+            console.log('[Tab] 标签激活成功');
+        });
+        
+        // 初始化：激活每个标签组的第一个标签
+        $tabContainers.each(function() {
+            $(this).find('.tab-menu .tab-item:first').addClass('active');
+            $(this).find('.tab-content:first').addClass('active');
+        });
+        
+        console.log('[Tab] 初始化完成，标签组数量:', $tabContainers.length);
+        
+        // 处理来自URL的标签激活请求
+        function activateTabFromHash() {
+            var hash = window.location.hash;
+            if (hash && hash.indexOf('-tab-') > -1) {
+                console.log('[Tab] URL hash检测:', hash);
+                
+                var tabElement = $(hash);
+                if (tabElement.length && tabElement.hasClass('tab-item')) {
+                    console.log('[Tab] 找到标签元素，触发点击');
+                    // 直接激活标签，不等待
+                    tabElement.click();
+                    
+                    // 立即滚动到正确的位置
+                    setTimeout(function() {
+                        var pos = tabElement.offset().top - 100;
+                        $("html,body").animate({
+                            scrollTop: pos
+                        }, 200); // 减少动画时间
+                    }, 50);
+                } else {
+                    console.log('[Tab] 未找到标签元素');
+                }
+            }
         }
         
-        if (hash) {
-            console.log('[Tab Debug] 尝试激活标签:', hash);
-            
-            // 查找对应的标签面板
-            var $tabPane = $(hash);
-            if ($tabPane.length && $tabPane.hasClass('tab-pane')) {
-                console.log('[Tab Debug] 找到标签面板');
-                
-                // 查找对应的标签按钮
-                var $tabLink = $('a[href="' + hash + '"][data-toggle="tab"]');
-                if ($tabLink.length) {
-                    console.log('[Tab Debug] 找到标签按钮，激活中...');
-                    
-                    // 激活标签
-                    $tabLink.tab('show');
-                    
-                    console.log('[Tab Debug] 标签已激活');
-                    return true;
-                } else {
-                    console.log('[Tab Debug] 未找到标签按钮');
-                }
-            } else {
-                console.log('[Tab Debug] 目标不是标签面板');
-            }
-        }
-        return false;
-    }
-    
-    // 页面加载时检查hash（延迟执行，确保DOM完全加载）
-    $(document).ready(function() {
-        setTimeout(function() {
-            activateTabFromHash();
-        }, 400);
-    });
-    
-    // 监听hash变化
-    $(window).on('hashchange', function() {
+        // 初始化时立即检查URL哈希值
         activateTabFromHash();
+        
+        // 监听URL哈希变化
+        $(window).on('hashchange', activateTabFromHash);
     });
-    
-    // 监听标签点击，更新URL hash（不触发滚动）
-    $(document).on('click', '.nav-tabs .nav-link[data-toggle="tab"]', function(e) {
-        var hash = $(this).attr('href');
-        if (hash && hash.substr(0, 1) == "#") {
-            // 更新URL但不触发hashchange事件
-            if (history.replaceState) {
-                history.replaceState(null, null, hash);
-            }
-        }
-    });
-    
-    // 暴露函数供外部调用
-    window.activateTabFromHash = activateTabFromHash;
 })(jQuery);
