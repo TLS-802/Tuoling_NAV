@@ -771,9 +771,14 @@ h4 + .tab-container {
 #search-results span {
     display: block;
     text-align: center;
-    padding: 20px;
+    padding: 30px 20px;
     color: #999;
     font-size: 14px;
+    line-height: 1.6;
+}
+
+.io-black-mode #search-results span {
+    color: #777;
 }
 
 #search-results li {
@@ -924,6 +929,53 @@ h4 + .tab-container {
     }
 }
 
+/* 搜索提示区域 */
+.search-tips {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 15px;
+    margin-top: 10px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 12px;
+    color: #666;
+}
+
+.io-black-mode .search-tips {
+    border-top-color: #37474f;
+    color: #999;
+}
+
+.search-tips .tip-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-tips .tip-item i {
+    font-size: 14px;
+    color: #3f51b5;
+}
+
+.io-black-mode .search-tips .tip-item i {
+    color: #90caf9;
+}
+
+.search-tips strong {
+    color: #3f51b5;
+    font-weight: 600;
+    padding: 2px 6px;
+    background: rgba(63, 81, 181, 0.08);
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.io-black-mode .search-tips strong {
+    color: #90caf9;
+    background: rgba(144, 202, 249, 0.12);
+}
+
 /* 响应式 - 小屏幕 */
 @media (max-width: 520px) {
     #local-search-box {
@@ -958,5 +1010,15 @@ h4 + .tab-container {
         top: -35px;
         right: 10px;
         font-size: 24px;
+    }
+    
+    .search-tips {
+        flex-direction: column;
+        gap: 8px;
+        font-size: 11px;
+    }
+    
+    .search-tips .tip-item {
+        gap: 4px;
     }
 }
