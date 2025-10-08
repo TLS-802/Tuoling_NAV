@@ -81,24 +81,6 @@ input {
     background: #2a2d3e;
 }
 
-#close-button {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    font-size: 20px;
-    color: #999;
-    cursor: pointer;
-    z-index: 10;
-}
-
-#close-button:hover {
-    color: #333;
-}
-
-.io-black-mode #close-button:hover {
-    color: #fff;
-}
-
 #search-results {
     margin: 15px 0;
     padding: 0;

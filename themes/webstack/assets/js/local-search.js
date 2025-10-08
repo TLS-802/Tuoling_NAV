@@ -167,11 +167,6 @@ document.getElementById('overlay').addEventListener('click', function(event) {
     this.style.display = 'none';
     }  
 });
-/*搜索框关闭按钮*/
-document.getElementById('close-button').addEventListener('click', function(event) {
-     var searchBox = document.getElementById('overlay'); 
-     searchBox.style.display = 'none';
-});
 /*键盘事件：结果列表选择*/        
 
 var index = -1; // 当前选中的索引
