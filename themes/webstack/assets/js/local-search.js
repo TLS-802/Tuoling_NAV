@@ -65,30 +65,41 @@ function performSearch() {
         var cardLink = allCards[i].querySelector('a.card');
         if (!cardLink) continue;
         
-        // 获取卡片中的标题
+        // 获取卡片中的标题和描述
         var titleElement = cardLink.querySelector('.overflowClip_1 strong');
         if (!titleElement) continue;
         
         var title = titleElement.textContent.trim();
+        
+        // 获取描述文本
+        var descElement = cardLink.querySelector('.overflowClip_1 + p.overflowClip_1');
+        var description = descElement ? descElement.textContent.trim() : '';
+        
+        // 组合标题和描述进行搜索
+        var searchText = title + (description ? ' - ' + description : '');
         var href = cardLink.getAttribute('href');
         
-        // 获取图标
+        // 获取图标 - 优先获取data-src，其次是src
         var imgElement = cardLink.querySelector('.url-img img');
-        var imgSrc = imgElement ? imgElement.getAttribute('src') : '';
+        var imgSrc = '';
+        if (imgElement) {
+            imgSrc = imgElement.getAttribute('data-src') || imgElement.getAttribute('src') || '';
+        }
         
         // 常规匹配
-        let wordMatch = title.match(regex);
+        let wordMatch = searchText.match(regex);
         
         // 拼音匹配
         var pinyinMatchResult = null;
         if (pyMatch && /^[a-zA-Z0-9]/.test(keyword)) { 
-            pinyinMatchResult = pyMatch(title, keyword, { continuous: true, precision: 'start'});
+            pinyinMatchResult = pyMatch(searchText, keyword, { continuous: true, precision: 'start'});
         }
         
         if (wordMatch || pinyinMatchResult) {
             results.push({
                 href: href,
-                text: title,
+                text: searchText,
+                title: title,
                 imgSrc: imgSrc,
                 pyMatch: pinyinMatchResult,
                 wdMatch: wordMatch
@@ -99,7 +110,8 @@ function performSearch() {
     // 渲染搜索结果
     searchResultsList.innerHTML = '';
     if (results.length > 0) {
-        var defaultLogo = (typeof theme !== 'undefined' && theme.logo) ? theme.logo : '/images/logo.png';
+        // 使用站点默认logo
+        var defaultLogo = '/images/logo.png';
         
         for (var j = 0; j < results.length; j++) {
             // 高亮匹配的文字
@@ -111,7 +123,7 @@ function performSearch() {
             }
             
             var highlight = word ? "<strong>" + word + "</strong>" : '';
-            var newtext = word ? results[j].text.replace(word, highlight) : results[j].text;
+            var newtext = word ? results[j].text.replace(new RegExp(word, 'gi'), highlight) : results[j].text;
             
             // 创建结果列表项
             var listItem = document.createElement('li');  
@@ -123,6 +135,7 @@ function performSearch() {
             img.onerror = function() { 
                 this.src = defaultLogo; 
             };
+            img.alt = results[j].title || '';
             newIcon.appendChild(img);
             
             // 添加链接
@@ -130,6 +143,7 @@ function performSearch() {
             newLink.href = results[j].href;  
             newLink.innerHTML = newtext;                      
             newLink.target = "_blank";
+            newLink.rel = "noopener noreferrer";
             
             // 组装列表项
             listItem.appendChild(newIcon);

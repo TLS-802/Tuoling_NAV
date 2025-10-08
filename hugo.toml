@@ -53,5 +53,10 @@ publishDir            = "docs"	# 站点静态文件保存目录
 [markup.goldmark.renderer]
     unsafe = true
 
+# 是否对本地搜索功能开启拼音匹配，true开启，false禁止
+# 拼音库体积约337KB，支持首字母匹配和全拼匹配
+[params.pinyin]
+    enable = true
+
 [minify]
     minifyOutput = true

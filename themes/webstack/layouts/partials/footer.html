@@ -36,6 +36,10 @@ var theme = {
 <script type="text/javascript" src="{{ $contentSearch.RelPermalink }}" id="content-search-js"></script>
 {{ $localSearch := resources.Get "js/local-search.js" | resources.Minify | fingerprint}}
 <script type="text/javascript" src="{{ $localSearch.RelPermalink }}" id="local-search-js"></script>
+{{ if .Site.Params.pinyin.enable }}
+{{ $pinyinPro := resources.Get "js/pinyin-pro-3.19.0.min.js" | fingerprint}}
+<script type="text/javascript" src="{{ $pinyinPro.RelPermalink }}" id="pinyin-pro-js"></script>
+{{ end }}
 
 <script type="text/javascript">
     $(document).ready(function(){
