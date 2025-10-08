@@ -1181,3 +1181,61 @@ function ioConfirm(message, btnCallBack) {
  * Last modified  : 2019-11-14 22:34:00
  */
 function ChromBookmarkConverter(){this.bookmarks={folders:[]},this.stripUnneededTags=function(a){return a=a.replace(/<p>/gi,""),a=a.replace(/<P>/gi,""),a=a.replace(/<dt>/gi,""),a=a.replace(/<DT>/gi,"")},this.processChromeBookmarksContent=function(a){var c,b=this;a=this.stripUnneededTags(a),c=$.parseHTML(a),$.each(c,function(a,c){if("DL"==c.tagName){var d={type:"folder",title:"未命名",items:[]};b.bookmarks.folders.push(d),b.processDL(c,1,d)}})},this.processDL=function(a,b,c){var d=this,e=0,f={},g={type:"folder",title:"",add_date:"",last_modified:"",items:[]},h={},i=$(a),j=!1;$.each(i.children(),function(a,i){var k,l,m,n,o,p,q,r,s;e+=1,k=b+"."+e,1==j&&i.tagName.toLowerCase()!="DL".toLowerCase()&&(j=!1,console.log("h3",f),g.items.push(f)),i.tagName.toLowerCase()=="DL".toLowerCase()&&(g={type:"folder",title:f.title,add_date:f.add_date,last_modified:f.last_modified,items:[]},1==j&&(j=!1),d.bookmarks.folders.push(g),d.processDL(i,k,g)),i.tagName.toLowerCase()=="H3".toLowerCase()&&(l=$(i),m=l.text()?l.text():"未命名",n=l.attr("add_date"),o=l.attr("last_modified"),f={type:"header",title:m,add_date:n,last_modified:o},j=!0),"a"==i.tagName.toLowerCase()&&isURL($(i).attr("href"))&&""!=$(i).text()&&(p=$(i),q=p.text(),r=p.attr("href"),s=p.attr("add_date"),p.attr("icon"),h={type:"link",title:q,href:r,add_date:s},c.items.push(h))})}}
+
+// 标签式二级菜单自动激活功能
+(function($){
+    // 处理标签激活的函数
+    function activateTabFromHash() {
+        var hash = window.location.hash;
+        if (hash) {
+            // 查找对应的标签面板
+            var $tabPane = $(hash);
+            if ($tabPane.length && $tabPane.hasClass('tab-pane')) {
+                // 查找对应的标签按钮
+                var $tabLink = $('a[href="' + hash + '"][data-toggle="tab"]');
+                if ($tabLink.length) {
+                    // 激活标签
+                    $tabLink.tab('show');
+                }
+            }
+        }
+    }
+    
+    // 页面加载时检查hash
+    $(document).ready(function() {
+        activateTabFromHash();
+    });
+    
+    // 监听hash变化
+    $(window).on('hashchange', function() {
+        activateTabFromHash();
+    });
+    
+    // 监听侧边栏链接点击
+    $(document).on('click', '.sidebar-menu a[href^="#"]', function(e) {
+        var hash = $(this).attr('href');
+        var $tabPane = $(hash);
+        
+        // 如果目标是标签面板，激活它
+        if ($tabPane.length && $tabPane.hasClass('tab-pane')) {
+            e.preventDefault();
+            
+            // 激活标签
+            var $tabLink = $('a[href="' + hash + '"][data-toggle="tab"]');
+            if ($tabLink.length) {
+                $tabLink.tab('show');
+                
+                // 延迟滚动，确保标签切换动画完成
+                setTimeout(function() {
+                    // 滚动到标签导航区域
+                    var $tabsContainer = $tabLink.closest('.nav-tabs');
+                    if ($tabsContainer.length) {
+                        $('html, body').animate({
+                            scrollTop: $tabsContainer.offset().top - 100
+                        }, 500);
+                    }
+                }, 100);
+            }
+        }
+    });
+})(jQuery);
