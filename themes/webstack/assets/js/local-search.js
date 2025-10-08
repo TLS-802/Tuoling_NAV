@@ -37,6 +37,9 @@
     function initElements() {
         Object.keys(CONFIG.selectors).forEach(key => {
             elements[key] = document.querySelector(CONFIG.selectors[key]);
+            if (!elements[key] && key !== 'searchBtn') {
+                console.warn(`[本地搜索] 未找到元素: ${CONFIG.selectors[key]}`);
+            }
         });
     }
     
@@ -220,6 +223,7 @@
      * 关闭搜索框
      */
     function closeSearch() {
+        console.log('[本地搜索] 执行关闭操作');
         if (elements.overlay) {
             elements.overlay.style.display = 'none';
             if (elements.searchInput) {
@@ -227,6 +231,9 @@
                 renderEmptyState('开始搜索本页内容', 'fa-lightbulb');
             }
             currentIndex = -1;
+            console.log('[本地搜索] 搜索框已关闭');
+        } else {
+            console.warn('[本地搜索] overlay元素不存在，无法关闭');
         }
     }
     
@@ -306,7 +313,14 @@
         
         // 关闭按钮
         if (elements.closeBtn) {
-            elements.closeBtn.addEventListener('click', closeSearch);
+            elements.closeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeSearch();
+                console.log('[本地搜索] 关闭按钮被点击');
+            });
+        } else {
+            console.warn('[本地搜索] 关闭按钮未找到');
         }
         
         // 点击遮罩关闭
@@ -314,6 +328,7 @@
             elements.overlay.addEventListener('click', function(e) {
                 if (e.target === elements.overlay) {
                     closeSearch();
+                    console.log('[本地搜索] 点击遮罩关闭');
                 }
             });
         }

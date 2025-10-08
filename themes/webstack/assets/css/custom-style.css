@@ -728,6 +728,8 @@ h4 + .tab-container {
     transition: all 0.3s ease;
     padding: 5px;
     line-height: 1;
+    z-index: 10;
+    outline: none;
 }
 
 #local-search-close:hover {

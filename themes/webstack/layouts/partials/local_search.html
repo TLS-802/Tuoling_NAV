@@ -1,8 +1,8 @@
 <!-- 本地搜索模态框 - 重构版 -->
-<div id="local-search-overlay" style="display:none">  
+<div id="local-search-overlay" style="display:none" onclick="if(event.target === this) this.style.display='none'">  
     <div id="local-search-box">
         <!-- 关闭按钮 -->
-        <button type="button" id="local-search-close" class="close-btn" aria-label="关闭搜索">
+        <button type="button" id="local-search-close" class="close-btn" aria-label="关闭搜索" onclick="document.getElementById('local-search-overlay').style.display='none'">
             <i class="fas fa-times-circle"></i>
         </button>
         
