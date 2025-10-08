@@ -698,14 +698,11 @@ h4 + .tab-container {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    max-width: 800px;
-    padding: 25px 30px 20px 30px;
+    max-width: 900px;
+    padding: 30px 35px 25px 35px;
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 0 8px 32px rgba(0, 0, 0, .15);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 /* 移除任何可能的伪元素 */
@@ -928,9 +925,9 @@ h4 + .tab-container {
 /* 响应式 - 大屏幕 */
 @media (min-width: 992px) {
     #local-search-box {
-        width: 60%;
-        max-width: 700px;
-        padding: 30px 40px 25px 40px;
+        width: 75%;
+        max-width: 1000px;
+        padding: 35px 50px 30px 50px;
     }
     
     #search-results {
@@ -949,9 +946,9 @@ h4 + .tab-container {
 /* 响应式 - 中屏幕 */
 @media (min-width: 520px) and (max-width: 768px) {
     #local-search-box {
-        width: 85%;
-        max-width: 550px;
-        padding: 25px 30px 20px 30px;
+        width: 88%;
+        max-width: 650px;
+        padding: 28px 35px 23px 35px;
     }
     
     #search-results {
@@ -962,9 +959,9 @@ h4 + .tab-container {
 /* 响应式 - 平板 */
 @media (min-width: 768px) and (max-width: 992px) {
     #local-search-box {
-        width: 70%;
-        max-width: 600px;
-        padding: 28px 35px 22px 35px;
+        width: 80%;
+        max-width: 750px;
+        padding: 32px 40px 27px 40px;
     }
     
     #search-results {
@@ -1023,8 +1020,8 @@ h4 + .tab-container {
 /* 响应式 - 小屏幕 */
 @media (max-width: 520px) {
     #local-search-box {
-        width: 92%;
-        padding: 20px 20px 15px 20px;
+        width: 94%;
+        padding: 25px 25px 20px 25px;
     }
     
     #search-input {
