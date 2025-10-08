@@ -1,22 +1,3 @@
-/* 控制台输出 */
-function makeMulti(string) {
-    let l = String(string)
-    l = l.substring(l.indexOf("/*") + 3, l.lastIndexOf("*/"))
-    return "%c " + l
-};
-const string = function () {
-    /*
-          _____       _     __          ____
-         / ___/____  (_)___/ /__  _____/ __ )____  _  __         爬虫爬得欢
-         \__ \/ __ \/ / __  / _ \/ ___/ __  / __ \| |/_/        监狱要坐穿
-        ___/ / /_/ / / /_/ /  __/ /  / /_/ / /_/ />  <         数据玩得溜
-       /____/ .___/_/\__,_/\___/_/  /_____/\____/_/|_|        牢饭吃个够
-           /_/
-    */
-};
-console.log(makeMulti(string), "color: #0084ff");
-console.log("\n %c 驼铃电商工具箱 %c dy.202802.xyz \n", "color: #ffffff; background: #0084ff; padding:5px 0;", "background: #fadfa3; padding:5px 0;");
-
 /* 弹窗一：say hello baby */
 // $(document).ready(function () {
 //     // 检查是否是 Chromium 内核且版本小于 100
