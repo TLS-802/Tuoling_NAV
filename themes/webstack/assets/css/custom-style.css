@@ -71,6 +71,76 @@ h4 {
     font-size: 18px;
 }
 
+/* 搜索模态框输入框样式 - 为按钮预留空间 */
+.search-modal #m_search-text,
+.search-modal .search-key {
+    padding-right: 70px !important;
+}
+
+/* 搜索模态框分类标签优化 */
+.search-modal .s-type {
+    position: relative !important;
+    width: 100% !important;
+    margin-bottom: 15px;
+}
+
+.search-modal .s-type-list {
+    position: relative !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    top: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.search-modal .s-type-list:before {
+    display: none !important;
+}
+
+.search-modal .s-type-list label {
+    display: inline-block;
+    padding: 6px 16px !important;
+    background-color: rgba(126, 126, 126, 0.08);
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.search-modal .s-type-list label:hover,
+.search-modal .s-type-list label.active {
+    background-color: rgba(0, 132, 255, 0.15);
+    color: #0084ff;
+}
+
+/* 搜索模态框搜索组优化 */
+.search-modal .search-group {
+    padding-left: 0 !important;
+    margin-top: 15px;
+}
+
+.search-modal .search-group .type-text {
+    display: none;
+}
+
+.search-modal .search-type {
+    padding-left: 0;
+}
+
+/* 暗黑模式下的搜索模态框样式 */
+.io-black-mode .search-modal .s-type-list label {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.io-black-mode .search-modal .s-type-list label:hover,
+.io-black-mode .search-modal .s-type-list label.active {
+    background-color: rgba(144, 202, 249, 0.15);
+    color: #90caf9;
+}
+
 /* 搜索框搜索图标颜色 */
 .header-big #search button i {
     color: #666;
