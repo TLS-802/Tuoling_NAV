@@ -1,20 +1,40 @@
 <!-- 本地搜索覆盖层 -->
 <div id="overlay" style="top:-100%">  
     <div id="search-box">
-        <a href="javascript:void(0);" id="close-button" title="点击周围任意地方也可以关闭。">
+        <!-- 关闭按钮 -->
+        <button id="close-button" type="button" title="关闭搜索" aria-label="关闭搜索">
             <i class="fas fa-times-circle"></i>
-        </a>
-        <form onsubmit="return false;" role="search">
-            <input type="text" id="search-input" placeholder="输入关键词、拼音或拼音首字母" autocomplete="off" aria-label="搜索输入框">
-            <i class="search-icon fas fa-search" aria-hidden="true"></i> 
-        </form>
-        <div id="search-results-container">
-            <ul id="search-results" role="listbox" aria-label="搜索结果">
-            </ul>
-            <div id="search-placeholder">搜索本页内容</div>
+        </button>
+        
+        <!-- 搜索输入区域 -->
+        <div class="search-input-wrapper">
+            <i class="search-icon fas fa-search" aria-hidden="true"></i>
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="输入关键词、拼音或拼音首字母" 
+                autocomplete="off" 
+                aria-label="搜索输入框"
+                spellcheck="false"
+            >
         </div>
-        <div class="search-tips">
-            键盘：<strong>↑</strong> 和 <strong>↓</strong> 选择，<strong>Enter</strong> 访问
+        
+        <!-- 搜索结果区域 -->
+        <div id="search-results-wrapper">
+            <div id="search-placeholder" class="search-placeholder">
+                <i class="fas fa-search placeholder-icon"></i>
+                <p>搜索本页内容</p>
+            </div>
+            <ul id="search-results" role="listbox" aria-label="搜索结果"></ul>
+        </div>
+        
+        <!-- 键盘提示 -->
+        <div class="search-footer">
+            <span class="keyboard-hint">
+                <kbd>↑</kbd> <kbd>↓</kbd> 选择
+                <kbd>Enter</kbd> 访问
+                <kbd>Esc</kbd> 关闭
+            </span>
         </div>
     </div>
 </div>
