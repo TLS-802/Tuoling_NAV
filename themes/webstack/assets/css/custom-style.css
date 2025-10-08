@@ -701,8 +701,8 @@ h4 + .tab-container {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 95%;
-    max-width: 1000px;
+    width: 90%;
+    max-width: 90%;
     padding: 30px 40px 25px 40px;
     border-radius: 16px;
     background-color: #fff;
@@ -761,25 +761,10 @@ h4 + .tab-container {
     display: none !important;
 }
 
-/* 搜索图标 */
-#local-search-box .search-icon {
-    position: absolute;
-    top: 50%;
-    left: 12px;
-    transform: translateY(-50%);
-    color: #3f51b5;
-    font-size: 16px;
-    pointer-events: none;
-}
-
-.io-black-mode #local-search-box .search-icon {
-    color: #90caf9;
-}
-
 /* 搜索输入框 */
 #search-input {
     width: 100%;
-    padding: 14px 15px; /* 移除图标后恢复左右统一内边距 */
+    padding: 14px 15px;
     border: 2px solid #e0e0e0;
     outline: none;
     background: #fff;
@@ -787,6 +772,7 @@ h4 + .tab-container {
     transition: all 0.3s ease;
     font-size: 15px;
     box-sizing: border-box;
+    margin: 0;
 }
 
 #search-input::placeholder {
@@ -815,11 +801,11 @@ h4 + .tab-container {
 
 /* 搜索结果列表 */
 #search-results {
-    width: 100% !important;
+    width: 100%;
     min-height: 100px;
     max-height: 350px;
     list-style-type: none;
-    padding: 0 !important;
+    padding: 0;
     margin: 20px 0 15px 0;
     overflow-y: auto;
     overflow-x: hidden;
@@ -847,12 +833,12 @@ h4 + .tab-container {
     padding: 12px 15px;
     margin: 0 0 8px 0;
     cursor: pointer;
-    display: flex !important;
+    display: flex;
     align-items: center;
     gap: 10px;
-    width: 100% !important;
+    width: 100%;
     box-sizing: border-box;
-    list-style: none !important;
+    list-style: none;
 }
 
 #search-results li:last-child {
@@ -960,8 +946,8 @@ h4 + .tab-container {
 /* 响应式 - 大屏幕 */
 @media (min-width: 992px) {
     #local-search-box {
-        width: 85%;
-        max-width: 1200px;
+        width: 90%;
+        max-width: 90%;
         padding: 35px 50px 30px 50px; /* 大屏幕增加左右内边距 */
     }
     
@@ -981,8 +967,8 @@ h4 + .tab-container {
 /* 响应式 - 中屏幕 */
 @media (min-width: 520px) and (max-width: 768px) {
     #local-search-box {
-        width: 88%;
-        max-width: 650px;
+        width: 90%;
+        max-width: 90%;
         padding: 28px 30px 23px 30px;
     }
     
@@ -994,8 +980,8 @@ h4 + .tab-container {
 /* 响应式 - 平板 */
 @media (min-width: 768px) and (max-width: 992px) {
     #local-search-box {
-        width: 80%;
-        max-width: 750px;
+        width: 90%;
+        max-width: 90%;
         padding: 32px 35px 27px 35px;
     }
     
@@ -1011,11 +997,12 @@ h4 + .tab-container {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    padding: 15px;
-    margin-top: 10px;
+    padding: 15px 0;
+    margin: 10px 0 0 0;
     border-top: 1px solid #e8e8e8;
     font-size: 12px;
     color: #666;
+    box-sizing: border-box;
 }
 
 .io-black-mode .search-tips {
@@ -1055,18 +1042,13 @@ h4 + .tab-container {
 /* 响应式 - 小屏幕 */
 @media (max-width: 520px) {
     #local-search-box {
-        width: 94%;
+        width: 90%;
         padding: 25px 20px 20px 20px;
     }
     
     #search-input {
         font-size: 14px;
-        padding: 12px 12px; /* 小屏保持统一内边距 */
-    }
-    
-    #local-search-box .search-icon {
-        font-size: 14px;
-        left: 10px;
+        padding: 12px 12px;
     }
     
     #search-results {
@@ -1080,6 +1062,7 @@ h4 + .tab-container {
         gap: 8px;
         width: 100%;
         box-sizing: border-box;
+        margin: 0 0 8px 0;
     }
     
     #search-results li i img {
@@ -1097,7 +1080,7 @@ h4 + .tab-container {
         flex-direction: column;
         gap: 8px;
         font-size: 11px;
-        padding: 12px 10px;
+        padding: 12px 0;
     }
     
     .search-tips .tip-item {
