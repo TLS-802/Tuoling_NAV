@@ -689,6 +689,7 @@ h4 + .tab-container {
     animation: slideDown .5s forwards;
     backdrop-filter: blur(8px);
     background: rgba(0, 0, 0, 0.4);
+    isolation: isolate; /* 防止外部伪元素影响 */
 }
 
 /* 搜索框容器 */
@@ -703,6 +704,7 @@ h4 + .tab-container {
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 0 8px 32px rgba(0, 0, 0, .15);
+    overflow: hidden; /* 隐藏任何越界元素 */
 }
 
 /* 移除任何可能的伪元素 */
@@ -712,6 +714,15 @@ h4 + .tab-container {
 #local-search-overlay::after {
     content: "" !important;
     display: none !important;
+}
+
+/* 彻底屏蔽覆盖层内部的伪元素与列表符号，避免出现“C/©”等字符 */
+#local-search-overlay *::before,
+#local-search-overlay *::after {
+    content: none !important;
+}
+#local-search-overlay ::marker {
+    content: "" !important;
 }
 
 /* 暗黑模式下的搜索框 */
