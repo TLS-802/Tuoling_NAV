@@ -61,17 +61,41 @@
     {{ if .list }}
     {{ $taxonomy := .taxonomy }} <!-- 避免同名二级导航定位不正确的问题 -->
     {{ $tabs := .tabs }} <!-- 获取tabs数据 -->
-    {{ range .tabs }}
-    <!--正文网址导航-->
-    <!-- {{ .name }} -->
+    
+    <!-- 一级分类标题 -->
     <div class="d-flex flex-fill">
         <h4 class="text-gray text-lg mb-4">
-            <i class="fas fa-stream site-tag mr-1" id="{{ md5 (printf "%s-%s" $taxonomy .name) }}"></i>
-            {{ .name }}
+            <i class="{{ .icon }} site-tag mr-1" id="{{ md5 .taxonomy }}"></i>
+            {{ .taxonomy }}
         </h4>
-        <div class="flex-fill"></div>
-        <!--a class='btn-move text-xs' href='#'>more+</a-->
     </div>
+    
+    <!-- 标签式二级菜单导航 -->
+    <ul class="nav nav-tabs mb-4" id="{{ md5 .taxonomy }}-tabs" role="tablist">
+        {{ range $index, $tab := .tabs }}
+        <li class="nav-item" role="presentation">
+            <a class="nav-link{{ if eq $index 0 }} active{{ end }}" 
+               id="{{ md5 (printf "%s-%s-tab" $taxonomy $tab.name) }}" 
+               data-toggle="tab" 
+               href="#{{ md5 (printf "%s-%s" $taxonomy $tab.name) }}" 
+               role="tab" 
+               aria-controls="{{ md5 (printf "%s-%s" $taxonomy $tab.name) }}" 
+               aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}">
+                {{ $tab.name }}
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+    
+    <!-- 标签内容区域 -->
+    <div class="tab-content" id="{{ md5 .taxonomy }}-content">
+    {{ range $index, $tab := .tabs }}
+    <!--正文网址导航-->
+    <!-- {{ $tab.name }} -->
+    <div class="tab-pane fade{{ if eq $index 0 }} show active{{ end }}" 
+         id="{{ md5 (printf "%s-%s" $taxonomy $tab.name) }}" 
+         role="tabpanel" 
+         aria-labelledby="{{ md5 (printf "%s-%s-tab" $taxonomy $tab.name) }}">
     <!--获取内容列表-->
     <div class="row">
         {{ range .links }}
@@ -115,9 +139,11 @@
         </div>
         {{ end }}
     </div><!--end row-->
-    <br />
-    <!--END {{ .name }} -->
+    </div><!--end tab-pane-->
+    <!--END {{ $tab.name }} -->
     {{ end }}
+    </div><!--end tab-content-->
+    <br />
     {{ else }}
     <!-- 时间样式 -->
     <!--主站推荐-->
