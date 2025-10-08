@@ -38,8 +38,6 @@ var theme = {
 <script type="text/javascript" src="{{ $lazyload.RelPermalink }}" id="lazyload-js"></script>
 {{ $pinyinPro := resources.Get "js/pinyin-pro-3.19.0.min.js" | fingerprint}}
 <script type="text/javascript" src="{{ $pinyinPro.RelPermalink }}" id="pinyin-pro-js"></script>
-{{ $localSearch := resources.Get "js/local-search.js" | fingerprint}}
-<script type="text/javascript" src="{{ $localSearch.RelPermalink }}" id="local-search-js"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){
