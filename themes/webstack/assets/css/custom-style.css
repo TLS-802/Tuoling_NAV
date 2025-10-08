@@ -699,11 +699,13 @@ h4 + .tab-container {
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 800px;
-    padding: 20px 25px 15px 25px;
+    padding: 25px 30px 20px 30px;
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 0 8px 32px rgba(0, 0, 0, .15);
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* 暗黑模式下的搜索框 */
@@ -715,74 +717,87 @@ h4 + .tab-container {
 /* 搜索框表单 */
 #local-search-box form {
     position: relative;
+    width: 100%;
+    max-width: 600px;
     margin: 0 auto;
-    max-width: 100%;
-    text-align: left;
 }
 
 /* 搜索图标 */
 #local-search-box .search-icon {
-    top: 50%;
-    left: 5px;
     position: absolute;
+    top: 50%;
+    left: 12px;
     transform: translateY(-50%);
-    padding-left: 8px;
     color: #3f51b5;
     font-size: 16px;
+    pointer-events: none;
+}
+
+.io-black-mode #local-search-box .search-icon {
+    color: #90caf9;
 }
 
 /* 搜索输入框 */
 #search-input {
     width: 100%;
-    padding: 14px 15px 14px 35px;
-    border: 2px solid transparent;
+    padding: 14px 15px 14px 42px;
+    border: 2px solid #e0e0e0;
     outline: none;
-    background: #f5f5f5;
-    border-radius: 8px;
+    background: #fff;
+    border-radius: 10px;
     transition: all 0.3s ease;
     font-size: 15px;
     box-sizing: border-box;
-    text-align: left;
+}
+
+#search-input::placeholder {
+    color: #999;
 }
 
 .io-black-mode #search-input {
-    background: #26282a;
+    background: #2a2d3e;
+    border-color: #37474f;
     color: #e8eaf6;
+}
+
+.io-black-mode #search-input::placeholder {
+    color: #666;
 }
 
 #search-input:focus {
     border-color: #3f51b5;
-    background: #fff;
+    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.1);
 }
 
 .io-black-mode #search-input:focus {
     border-color: #90caf9;
-    background: #2a2d3e;
+    box-shadow: 0 0 0 3px rgba(144, 202, 249, 0.1);
 }
 
 /* 搜索结果列表 */
 #search-results {
-    position: relative;
-    min-height: 60px;
+    width: 100%;
+    max-width: 600px;
+    min-height: 100px;
     max-height: 350px;
     list-style-type: none;
     padding: 0;
-    margin: 15px 0 10px 0;
+    margin: 20px 0 15px 0;
     overflow-y: auto;
     overflow-x: hidden;
-    text-align: left;
 }
 
-#search-results span {
-    display: block;
-    text-align: center;
-    padding: 30px 20px;
+#search-results > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
     color: #999;
     font-size: 14px;
     line-height: 1.6;
 }
 
-.io-black-mode #search-results span {
+.io-black-mode #search-results > span {
     color: #777;
 }
 
@@ -790,34 +805,41 @@ h4 + .tab-container {
     border-radius: 8px;
     transition: all 0.2s ease;
     font-size: 15px;
-    padding: 10px 12px;
-    margin: 8px 0;
+    padding: 12px 15px;
+    margin: 0 0 8px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
     display: flex;
     align-items: center;
-    text-align: left;
+    gap: 10px;
+}
+
+#search-results li:last-child {
+    margin-bottom: 0;
 }
 
 #search-results li:hover {
-    transform: translateX(3px);
     background-color: rgba(63, 81, 181, 0.08);
 }
 
+.io-black-mode #search-results li:hover {
+    background-color: rgba(144, 202, 249, 0.15);
+}
+
 #search-results li a {
-    padding-left: 8px;
     color: #333;
     text-decoration: none;
     flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    line-height: 1.5;
 }
 
 .io-black-mode #search-results li a {
-    color: #e0e0e0;
+    color: #e8eaf6;
 }
 
 #search-results li a strong {
@@ -894,8 +916,14 @@ h4 + .tab-container {
 /* 响应式 - 大屏幕 */
 @media (min-width: 992px) {
     #local-search-box {
-        width: 80%;
-        max-width: 900px;
+        width: 70%;
+        max-width: 800px;
+        padding: 30px 40px 25px 40px;
+    }
+    
+    #local-search-box form,
+    #search-results {
+        max-width: 700px;
     }
     
     #search-results {
@@ -903,11 +931,11 @@ h4 + .tab-container {
     }
     
     #search-results::-webkit-scrollbar {
-        width: 8px !important;
+        width: 6px !important;
     }
     
     #search-results::-webkit-scrollbar-thumb:vertical {
-        border-radius: 4px !important;
+        border-radius: 3px !important;
     }
 }
 
@@ -937,13 +965,14 @@ h4 + .tab-container {
 
 /* 搜索提示区域 */
 .search-tips {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    padding: 12px 15px;
+    padding: 15px;
     margin-top: 10px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #e8e8e8;
     font-size: 12px;
     color: #666;
 }
@@ -986,25 +1015,33 @@ h4 + .tab-container {
 @media (max-width: 520px) {
     #local-search-box {
         width: 95%;
-        padding: 15px 15px 10px 15px;
+        padding: 20px 15px 15px 15px;
+    }
+    
+    #local-search-box form,
+    #search-results {
+        max-width: 100%;
     }
     
     #search-input {
         font-size: 14px;
-        padding: 12px 12px 12px 32px;
+        padding: 12px 12px 12px 38px;
     }
     
     #local-search-box .search-icon {
         font-size: 14px;
+        left: 10px;
     }
     
     #search-results {
         max-height: 250px;
+        min-height: 80px;
     }
     
     #search-results li {
         font-size: 14px;
-        padding: 8px 10px;
+        padding: 10px 12px;
+        gap: 8px;
     }
     
     #search-results li i img {
@@ -1022,6 +1059,7 @@ h4 + .tab-container {
         flex-direction: column;
         gap: 8px;
         font-size: 11px;
+        padding: 12px 10px;
     }
     
     .search-tips .tip-item {
