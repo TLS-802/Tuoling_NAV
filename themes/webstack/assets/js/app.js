@@ -1253,4 +1253,109 @@ function ChromBookmarkConverter(){this.bookmarks={folders:[]},this.stripUnneeded
         // 监听URL哈希变化
         $(window).on('hashchange', activateTabFromHash);
     });
+    
+    // 站内搜索功能
+    // 初始化全局搜索数据
+    window.searchAllLinks = [];
+    
+    // 收集搜索数据
+    function collectSearchData() {
+        var allLinks = [];
+        $('.url-card').each(function() {
+            var $card = $(this);
+            var $link = $card.find('a.card');
+            var title = $card.find('strong').text().trim();
+            var description = $card.find('.text-muted.text-xs').text().trim();
+            var url = $link.attr('href');
+            var logo = $card.find('img').attr('data-src') || $card.find('img').attr('src');
+            // 获取分类信息 - 向上查找最近的h4标签
+            var $categoryElement = $card.closest('.row').prevAll('.d-flex.flex-fill:first').find('h4');
+            var category = $categoryElement.text().trim();
+            
+            if (title && url) {
+                allLinks.push({
+                    title: title,
+                    description: description,
+                    url: url,
+                    logo: logo,
+                    category: category
+                });
+            }
+        });
+        
+        window.searchAllLinks = allLinks;
+        console.log('搜索数据收集完成，共', allLinks.length, '个链接');
+    }
+    
+    // 页面加载完成后收集数据
+    $(window).on('load', function() {
+        setTimeout(collectSearchData, 500);
+    });
+    
+    // 搜索功能事件绑定
+    $(document).ready(function() {
+        // 搜索输入事件
+        $(document).on('input', '#local-search-input', function() {
+            var keyword = $(this).val().toLowerCase().trim();
+            var $resultsContainer = $('#local-search-results');
+            
+            if (keyword === '') {
+                $resultsContainer.html('<p class="text-muted text-center">请输入搜索关键词...</p>');
+                return;
+            }
+            
+            // 使用全局变量中的链接数据
+            var searchData = window.searchAllLinks || [];
+            
+            if (searchData.length === 0) {
+                $resultsContainer.html('<p class="text-muted text-center">搜索数据加载中，请稍候...</p>');
+                return;
+            }
+            
+            // 搜索匹配的链接
+            var results = searchData.filter(function(link) {
+                return link.title.toLowerCase().includes(keyword) || 
+                       link.description.toLowerCase().includes(keyword) ||
+                       link.category.toLowerCase().includes(keyword);
+            });
+            
+            // 显示搜索结果
+            if (results.length > 0) {
+                var html = '<div class="search-results-list">';
+                results.forEach(function(result) {
+                    html += '<div class="search-result-item mb-3 p-3 border rounded">';
+                    html += '<a href="' + result.url + '" target="_blank" class="d-flex align-items-center text-decoration-none">';
+                    if (result.logo) {
+                        html += '<img src="' + result.logo + '" alt="' + result.title + '" class="mr-3" style="width: 40px; height: 40px; object-fit: contain;">';
+                    }
+                    html += '<div class="flex-fill">';
+                    html += '<h6 class="mb-1">' + result.title + '</h6>';
+                    html += '<p class="mb-0 text-muted small">' + result.description + '</p>';
+                    html += '<small class="text-primary">' + result.category + '</small>';
+                    html += '</div>';
+                    html += '</a>';
+                    html += '</div>';
+                });
+                html += '</div>';
+                $resultsContainer.html(html);
+            } else {
+                $resultsContainer.html('<p class="text-muted text-center">未找到匹配的结果...</p>');
+            }
+        });
+        
+        // 模态框打开时聚焦搜索框
+        $('#local-search-modal').on('shown.bs.modal', function() {
+            $('#local-search-input').focus();
+            // 如果数据还未加载，尝试重新收集
+            if (window.searchAllLinks.length === 0) {
+                collectSearchData();
+            }
+        });
+        
+        // 模态框关闭时清空搜索
+        $('#local-search-modal').on('hidden.bs.modal', function() {
+            $('#local-search-input').val('');
+            $('#local-search-results').html('<p class="text-muted text-center">请输入搜索关键词...</p>');
+        });
+    });
 })(jQuery);

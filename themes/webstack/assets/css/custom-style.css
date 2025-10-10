@@ -672,3 +672,116 @@ h4 + .tab-container {
     margin-bottom: 15px;
 }
 
+/* 站内搜索样式 */
+.local-search-btn {
+    padding: 0 10px;
+    vertical-align: middle;
+}
+
+.local-search-btn i {
+    transition: all 0.3s ease;
+}
+
+.local-search-btn a:hover i {
+    color: #007bff !important;
+    transform: scale(1.1);
+}
+
+#local-search-modal .modal-dialog {
+    margin-top: 10vh;
+}
+
+#local-search-modal .modal-content {
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+#local-search-modal .modal-header {
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem;
+}
+
+#local-search-modal .modal-body {
+    padding: 1.5rem;
+}
+
+#local-search-input {
+    font-size: 18px;
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+#local-search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+#local-search-results {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.search-result-item:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.search-result-item h6 {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.search-result-item:hover h6 {
+    color: #007bff;
+}
+
+/* 暗黑模式适配 */
+.io-black-mode #local-search-modal .modal-content {
+    background-color: #2b2b2b;
+    color: #fff;
+}
+
+.io-black-mode #local-search-modal .modal-header {
+    border-bottom-color: #404040;
+}
+
+.io-black-mode #local-search-input {
+    background-color: #404040;
+    border-color: #404040;
+    color: #fff;
+}
+
+.io-black-mode #local-search-input:focus {
+    border-color: #007bff;
+    background-color: #404040;
+}
+
+.io-black-mode .search-result-item {
+    background: #3a3a3a;
+    border-color: #505050 !important;
+}
+
+.io-black-mode .search-result-item h6 {
+    color: #fff;
+}
+
+.io-black-mode .search-result-item:hover {
+    background: #404040;
+}
+
+.io-black-mode .local-search-btn i {
+    color: #b4b4b4 !important;
+}
+
+.io-black-mode .local-search-btn a:hover i {
+    color: #007bff !important;
+}
+
